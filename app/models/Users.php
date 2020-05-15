@@ -27,8 +27,12 @@ class Users extends Model
 
         $this->hasMany(
             'USER_ID',
-            'Borrows',
-            'USER_ID'
+            Borrows::class,
+            'USER_ID',
+            [
+                'reusable' => true,
+                'alias' => 'borrows'
+            ]
         );
     }
 }

@@ -18,8 +18,12 @@ class Authors extends Model
 
         $this->hasMany(
             'AUTHOR_ID',
-            'Books',
-            'AUTHOR_ID'
+            Books::class,
+            'AUTHOR_ID',
+            [
+                'reusable' => true,
+                'alias' => 'books'
+            ]
         );
     }
 }

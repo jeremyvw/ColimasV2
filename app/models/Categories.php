@@ -20,8 +20,12 @@ class Categories extends Model
 
         $this->hasMany(
             'CATEGORY_ID',
-            'Books',
-            'CATEGORY_ID'
+            Books::class,
+            'CATEGORY_ID',
+            [
+                'reusable' => true,
+                'alias' => 'books'
+            ]
         );
     }
 }
