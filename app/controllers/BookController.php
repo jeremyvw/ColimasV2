@@ -180,4 +180,38 @@ class BookController extends ControllerBase
         $this->response->redirect('/book/manage');
     }
 
+    public function searchAction()
+    {
+        $searchKey = $this->request->getPost('searchKey');
+        $searchBy = $this->request->getPost('searchBy');
+        $searchKey = '%'.$searcKey.'%';
+        if($searchBy == 'Author'){
+            $searchKey = '%'.$searchKey.'%';
+            $query = $this->modelsManager->createQuery('SELECT * FROM Books, Authors
+            WHERE AUTHOR_NAME LIKE :searchKey:');
+            $results = $query->execute([
+                'searchKey' => $searchKey,
+            ]);
+        }
+        else if($searchBy == 'BOOK_TITLE'){
+            $searchKey = '%'.$searchKey.'%';
+            $query = $this->modelsManager->createQuery('SELECT * FROM Books
+            WHERE BOOK_TITLE = :searchKey:');
+            $results = $query->execute([
+                'searchKey' => $searchKey,
+            ]);
+        }
+        else{
+            $results = Books::query()
+                ->where('BOOK_TITLE LIKE :BOOK_TITLE:')
+                ->bind(
+                    [
+                        'BOOK_TITLE' => $searchKey,
+                    ]
+                )
+                ->execute();
+        }
+        $this->view->results = $results;
+    }
+
 }
