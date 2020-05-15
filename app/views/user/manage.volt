@@ -4,6 +4,13 @@
     <div class="page-header" style="text-align: center;">
         <h2>Members</h2>
     </div>
+    <div class="card-header">
+        <form class="form-inline" method="POST" action="{{url('user/search')}}">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Member" aria-label="Search" name="searchKey">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+    </div>
     <br>
     <table class="ui sortable selectable inverted brown celled table">
         <thead>
