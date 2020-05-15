@@ -62,4 +62,38 @@ class UserController extends ControllerBase
         
     }
 
+    public function searchAction()
+    {
+        $searchKey = $this->request->getPost('searchKey');
+        $searchBy = $this->request->getPost('searchBy');
+        $searchKey = '%'.$searchKey.'%';
+        if($searchBy == 'USER_NAME'){
+            $searchKey = '%'.$searchKey.'%';
+            $query = $this->modelsManager->createQuery('SELECT * FROM Users
+            WHERE USER_NAME LIKE :searchKey:');
+            $results = $query->execute([
+                'searchKey' => $searchKey,
+            ]);
+        }
+        else if($searchBy == 'USER_CATEGORY'){
+            $searchKey = '%'.$searchKey.'%';
+            $query = $this->modelsManager->createQuery('SELECT * FROM Users
+            WHERE USER_CATEGORY LIKE :searchKey:');
+            $results = $query->execute([
+                'searchKey' => $searchKey,
+            ]);
+        }
+        else{
+            $results = Users::query()
+                ->where('USER_NAME LIKE :USER_NAME:')
+                ->bind(
+                    [
+                        'USER_NAME' => $searchKey,
+                    ]
+                )
+                ->execute();
+        }
+        $this->view->result = $results;
+    }
+
 }
