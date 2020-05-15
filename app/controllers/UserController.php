@@ -35,6 +35,23 @@ class UserController extends ControllerBase
         
     } 
 
+    public function profileAction()
+    {
+
+    }
+
+    public function editAction($id)
+    {
+        $user = Users::findFirstByUSER_ID($id);
+
+        $this->view->user = $user;
+    }
+
+    public function updateAction()
+    {
+
+    }
+
     public function registerAction()
     {
         
