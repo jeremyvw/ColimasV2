@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a:5:{i:0;s:2622:"<!DOCTYPE html>
 <html lang="en">
     <?= $this->assets->outputCss() ?>
 <head>
@@ -56,41 +56,12 @@
     </nav>
 </head>
 
-
-
+";s:5:"title";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:"
+";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:60;}}i:1;s:13:"
 
 <body>
-    
-<div class="container">
-    <div class="page-header" style="text-align: center;">
-        <h2>Members</h2>
-    </div>
-    <br>
-    <table class="ui sortable selectable inverted brown celled table">
-        <thead>
-            <tr class="center aligned">
-                <th>ID</th>
-                <th>Name</th>
-                <th>Birthdate</th>
-                <th>Gender</th>
-                <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($users as $user) { ?>
-                <?php if ($user->USER_CATEGORY != 0) { ?>
-                    <tr class="center aligned">
-                        <th><?= $user->USER_ID ?></th>
-                        <th><?= $user->USER_NAME ?></th>
-                        <th><?= $user->USER_BIRTHDATE ?></th>
-                        <th><?= $user->USER_GENDER ?></th>
-                        <th><?= $user->USER_CATEGORY ?></th>
-                    </tr>
-                <?php } ?>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
-
+    ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:5:"
+    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:64;}}i:2;s:17:"
 </body>
 </html>
+";}

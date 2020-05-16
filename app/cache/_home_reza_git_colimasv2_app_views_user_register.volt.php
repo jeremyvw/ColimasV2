@@ -28,7 +28,7 @@
             <div class="container diva" style="background-color:white">
                 <div class="col-lg-11 cols-lg-11 mx-auto">
                     <h3 class="login-heading mb-4" style="text-align: center;">Register</h3>
-                    <form method="post" action="{{url('/session/register')}}" enctype="multipart/form-data">
+                    <form method="post" action="<?= $this->url->get('/session/register') ?>" enctype="multipart/form-data">
                         <div class="form-label-group">
                             <input type="email" name="email" placeholder="Email address" required autofocus
                                 class="form-control">
@@ -65,7 +65,7 @@
                             type="submit" value="Login">Register</button>
                         <div class="text-center" style="padding-bottom: 20px;">
                             <span class="small">Already have an account?</span>
-                            <a class="small" href="{{url('user/login')}}">Login</a>
+                            <a class="small" href="<?= $this->url->get('user/login') ?>">Login</a>
                         </div>
                     </form>
                 </div>
@@ -74,11 +74,11 @@
     </div>
     <!-- <div class="limiter">
         <div class="container-register100">
-            <form method="POST" autocomplete="off" action="{{url('/session/register')}}" enctype="multipart/form-data"
+            <form method="POST" autocomplete="off" action="<?= $this->url->get('/session/register') ?>" enctype="multipart/form-data"
                 class="login100-form validate-form">
                 <span class="register100-form-title">Register</span>
                 <div class="wrap-input100 validate-input p-bp10">
-                    {{ flashSession.output() }}
+                    <?= $this->flashSession->output() ?>
                 </div>
                 <div class="wrap-input100 validate-input p-bp10">
                     <label for="username">Username</label>

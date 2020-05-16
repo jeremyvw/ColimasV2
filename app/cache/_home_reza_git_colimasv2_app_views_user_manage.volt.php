@@ -63,55 +63,37 @@
     
 <div class="container">
     <div class="page-header" style="text-align: center;">
-        <h2>Collections</h2>
+        <h2>Members</h2>
+    </div>
+    <div class="card-header">
+        <form class="form-inline" method="POST" action="<?= $this->url->get('user/search') ?>">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Member" aria-label="Search" name="searchKey">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
     </div>
     <br>
-    <?php if ($this->session->get('auth')) { ?>
-    <div class="page-header">
-        <a href="<?= $this->url->get('book/create') ?>" class="btn btn-primary">Add New Book into Collection</a>
-        <br>
-    </div>
-    <?php } ?>
-    <div>
-        <?= $this->flashSession->output() ?>
-        <br>
-    </div>
     <table class="ui sortable selectable inverted brown celled table">
         <thead>
-            <tr>
+            <tr class="center aligned">
                 <th>ID</th>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Shelf</th>
-                <th>Pages</th>
-                <th>Status</th>
-                <th>Count</th>
-                <th>Author</th>
+                <th>Name</th>
+                <th>Birthdate</th>
+                <th>Gender</th>
                 <th>Category</th>
-                <?php if ($this->session->get('auth')) { ?>
-                <th>Action</th>
-                <?php } ?>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($books as $book) { ?>
-            <tr>
-                <td><?= $book->BOOK_ID ?></td>
-                <td><?= $book->BOOK_TITLE ?></td>
-                <td><?= $book->BOOK_YEAR ?></td>
-                <td><?= $book->BOOK_SHELF ?></td>
-                <td><?= $book->BOOK_PAGECOUNT ?></td>
-                <td><?= $book->BOOK_STATUS ?></td>
-                <td><?= $book->BOOK_COUNT ?></td>
-                <td><?= $book->authors->AUTHOR_NAME ?></td>
-                <td><?= $book->categories->CATEGORY_NAME ?></td>
-                <?php if ($this->session->get('auth')) { ?>
-                <td>
-                    <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary"><span class="fas fa-plus"></span>Edit</a>
-                    <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger"><span class="fas fa-plus"></span>Delete</a>
-                </td>
+            <?php foreach ($users as $user) { ?>
+                <?php if ($user->USER_CATEGORY != 0) { ?>
+                    <tr class="center aligned">
+                        <th><?= $user->USER_ID ?></th>
+                        <th><?= $user->USER_NAME ?></th>
+                        <th><?= $user->USER_BIRTHDATE ?></th>
+                        <th><?= $user->USER_GENDER ?></th>
+                        <th><?= $user->USER_CATEGORY ?></th>
+                    </tr>
                 <?php } ?>
-            </tr>
             <?php } ?>
         </tbody>
     </table>

@@ -78,7 +78,7 @@ class SessionController extends ControllerBase
         $name = $this->request->getPost('name');
         $birthdate = $this->request->getPost('birthdate');
         $gender = $this->request->getPost('gender');
-        $category = $this->request->getPost('category');
+        $category = 1;
         
         if($this->request->hasFiles())
         {
