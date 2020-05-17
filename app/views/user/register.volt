@@ -45,7 +45,7 @@
                                 placeholder="Confirm Password" required>
                         </div> -->
                         <div class="form-label-group">
-                            <input type="text" name="name" class="form-control" placeholder="Name" required>
+                            <input type="text" name="name" class="form-control" placeholder="Fullname" required>
                         </div>
                         <div class="form-label-group">
                             <input type="date" class="form-control" name="birthdate" required>
@@ -53,9 +53,10 @@
                         <div class="form-label-group">
                             <span>Jenis Kelamin</span><br>
                             <input type="radio" id="male" name="gender" value="Male" style="display: inline;" required>
-                            <label for="laki" style="padding-right: 10pt;">Laki-Laki</label>
+                            <label for="laki" style="margin: 0;padding: 5pt 20pt 0 5pt;">Laki-Laki</label>
+                            <!-- padding-right: 10pt;padding-bottom: 0; -->
                             <input type="radio" id="female" name="gender" value="Female" required>
-                            <label for="perempuan">Perempuan</label>
+                            <label for="perempuan" style="margin: 0;padding: 5pt 25pt 0 5pt;">Perempuan</label>
                         </div>
                         <div style="padding-bottom: 30px;">
                             <label for="coverimage">Profile Picture (Optional)</label>
