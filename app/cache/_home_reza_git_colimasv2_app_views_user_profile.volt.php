@@ -39,7 +39,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="<?= $this->url->get('/user/profile') ?>" class="dropdown-item">Profile</a>
                         <a href="<?= $this->url->get('/borrow') ?>" class="dropdown-item">Requests</a>
-                        <a href="#" class="dropdown-item">Upgrade</a>
+                        <a href="<?= $this->url->get('/upgrade/request') ?>" class="dropdown-item">Upgrade</a>
                         <div class="dropdown-divider"></div>
                         <a href="<?= $this->url->get('/session/logout') ?>" class="dropdown-item">
                             <i class="fas fa-sign-out-alt"></i>

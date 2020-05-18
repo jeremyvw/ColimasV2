@@ -3,7 +3,7 @@
 
 namespace App\Controllers;
 
-// use App\Models\Upgrade;
+use App\Models\Upgrade;
 use App\Models\Users;
 // use App\Validation\UserValidation;
 
@@ -19,9 +19,33 @@ class UpgradeController extends ControllerBase
         if(!$this->session->has('auth')){
             $this->response->redirect('/user/login');
         }
+        $this->view->upgrades = Upgrade::find();
         // if(!$this->session->has('auth')){
         //     $this->response->redirect('/auth/login');
         // }
+    }
+
+    public function requestAction()
+    {
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+
+        $upg = new Upgrade();
+        $upg->USER_ID=$this->session->get('auth')['id'];
+        // $pem->tanggal_pengembalian = NULL;
+        $upg->UPGRADE_REQUESTDATE = date('Y-m-d h:i:sa');
+        $upg->UPGRADE_STATUS = 0;
+        // Store and check for errors
+        $success = $upg->save();
+
+
+        if($success)
+        {
+            $this->flashSession->error('Input data berhasil');
+        }
+        // passing a message to the view
+        $this->response->redirect('/user/profile');
     }
 
     public function updateAction($id)

@@ -27,7 +27,7 @@ class Upgrade extends Model
         $this->setSchema('dbo');
 
         // Untuk mengeset nama tabel, default : nama class
-        $this->setSource('upgrade');
+        $this->setSource('upgrades');
 
         $this->belongsTo(
             'USER_ID',
