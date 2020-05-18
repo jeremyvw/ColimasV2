@@ -1,6 +1,6 @@
 {% extends 'template/layout.volt' %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="page-header" style="text-align: center;">
         <h2>Borrow Requests</h2>
     </div>
@@ -8,7 +8,7 @@
     <div>
         {{ flashSession.output() }}
     </div>
-    <table class="ui sortable selectable inverted brown celled table">
+    <table class="table">
         <thead>
             <tr class="center aligned">
                 <th>ID</th>
@@ -19,20 +19,22 @@
                 <th>Expected Return</th>
                 <th>Return Date</th>
                 <th>Status</th>
+                <th>Denda</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             {% for borrow in borrows %}
             <tr class="center aligned">
-                <th>{{borrow.BORROW_ID}}</th>
-                <th>{{borrow.books.BOOK_TITLE}}</th>
-                <th>{{borrow.users.USER_NAME}}</th>
-                <th>{{borrow.users.USER_CATEGORY}}</th>
-                <th>{{borrow.BORROW_STARTDATE}}</th>
-                <th>{{borrow.BORROW_EXPECTEDRETURNDATE}}</th>
-                <th>{{borrow.BORROW_RETURNDATE}}</th>
-                <th>{{borrow.BORROW_STATUS}}</th>
+                <td>{{borrow.BORROW_ID}}</td>
+                <td>{{borrow.books.BOOK_TITLE}}</td>
+                <td>{{borrow.users.USER_NAME}}</td>
+                <td>{{borrow.users.USER_CATEGORY}}</td>
+                <td>{{borrow.BORROW_STARTDATE}}</td>
+                <td>{{borrow.BORROW_EXPECTEDRETURNDATE}}</td>
+                <td>{{borrow.BORROW_RETURNDATE}}</td>
+                <td>{{borrow.BORROW_STATUS}}</td>
+                <td>{{borrow.BORROW_PENALTY}}</td>
                 <td>
                     <a href="{{url('/borrow/detail/'~borrow.BORROW_ID)}}" class="btn btn-info">View Detail</a>
                 </td>

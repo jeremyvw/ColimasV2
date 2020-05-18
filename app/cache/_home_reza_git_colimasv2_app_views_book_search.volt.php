@@ -32,7 +32,7 @@
                     <a href="<?= $this->url->get('/user/manage') ?>" class="nav-link">Members</a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $this->url->get('/borrow/manage') ?>" class="nav-link">Requests</a>
+                    <a href="<?= $this->url->get('/borrow') ?>" class="nav-link">Requests</a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">Welcome, <?= $this->session->get('auth')['name'] ?></span>

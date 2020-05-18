@@ -32,7 +32,7 @@
                     <a href="{{url('/user/manage')}}" class="nav-link">Members</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/borrow/manage')}}" class="nav-link">Requests</a>
+                    <a href="{{url('/borrow')}}" class="nav-link">Requests</a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">Welcome, {{session.get('auth')['name']}}</span>

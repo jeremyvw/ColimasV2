@@ -1,4 +1,4 @@
-a:5:{i:0;s:2628:"<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <?= $this->assets->outputCss() ?>
 
@@ -58,12 +58,55 @@ a:5:{i:0;s:2628:"<!DOCTYPE html>
     </nav>
 </head>
 
-";s:5:"title";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:"
-";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:62;}}i:1;s:13:"
+
+
 
 <body>
-    ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:5:"
-    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:66;}}i:2;s:17:"
+    
+<div class="container-fluid">
+    <div class="page-header" style="text-align: center;">
+        <h2>Borrow Requests</h2>
+    </div>
+    <br>
+    <div>
+        <?= $this->flashSession->output() ?>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="center aligned">
+                <th>ID</th>
+                <th>Book</th>
+                <th>Member</th>
+                <th>Member Category</th>
+                <th>Start Date</th>
+                <th>Expected Return</th>
+                <th>Return Date</th>
+                <th>Status</th>
+                <th>Denda</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($borrows as $borrow) { ?>
+            <tr class="center aligned">
+                <td><?= $borrow->BORROW_ID ?></td>
+                <td><?= $borrow->books->BOOK_TITLE ?></td>
+                <td><?= $borrow->users->USER_NAME ?></td>
+                <td><?= $borrow->users->USER_CATEGORY ?></td>
+                <td><?= $borrow->BORROW_STARTDATE ?></td>
+                <td><?= $borrow->BORROW_EXPECTEDRETURNDATE ?></td>
+                <td><?= $borrow->BORROW_RETURNDATE ?></td>
+                <td><?= $borrow->BORROW_STATUS ?></td>
+                <td><?= $borrow->BORROW_PENALTY ?></td>
+                <td>
+                    <a href="<?= $this->url->get('/borrow/detail/' . $borrow->BORROW_ID) ?>" class="btn btn-info">View Detail</a>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
+
 </body>
 
-</html>";}
+</html>

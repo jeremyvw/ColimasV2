@@ -1,4 +1,4 @@
-a:5:{i:0;s:2628:"<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <?= $this->assets->outputCss() ?>
 
@@ -58,12 +58,65 @@ a:5:{i:0;s:2628:"<!DOCTYPE html>
     </nav>
 </head>
 
-";s:5:"title";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:"
-";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:62;}}i:1;s:13:"
+
+
 
 <body>
-    ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:5:"
-    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:66;}}i:2;s:17:"
+    
+<div class="container">
+    <div class="page-header" style="text-align: center;">
+        <h2>Request Detail</h2>
+    </div>
+    <br>
+    <form method="POST" autocomplete="off" action="<?= $this->url->get('/borrow/update/' . $borrow->BORROW_ID) ?>" enctype="multipart/form-data" class="ui form">
+        <div class="form-group row">
+            <label for="id">ID</label>
+            <div class="col-sm-10">
+                <input type="text" class="" name="title" value="<?= $borrow->BORROW_ID ?>" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="bookid">Book ID</label>
+            <div class="col-sm-10">
+                <input type="text" name="bookid" required value="<?= $borrow->BOOK_ID ?>" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="userid">User ID</label>
+            <div class="col-sm-10">
+                <input type="text" name="userid" required value="<?= $borrow->USER_ID ?>" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+                <label for="startdate">Start Date</label>
+                <div class="col-sm-10">
+                    <input type="date" name="startdate" required value="<?= $borrow->BORROW_STARTDATE ?>" readonly>
+                </div>
+        </div>
+        <div class="form-group row">
+            <label for="expectedreturndate">Expected Return Date</label>
+            <div class="col-sm-10">
+                <input type="date" name="expectedreturndate" required value="<?= $borrow->BORROW_EXPECTEDRETURNDATE ?>">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="returndate">Return Date</label>
+            <div class="col-sm-10">
+                <input type="text" name="returndate" value="<?= $borrow->BORROW_RETURNDATE ?>" readonly>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="status">Status</label>
+            <select name="status" class="form-control">
+                <option value="Pending">Pending</option>
+                <option value="Accepted">Accepted</option>
+                <option value="Finished">Finished</option>
+            </select>
+        </div>
+        <input type="submit" value="Save changes" class="btn btn-success">
+    </form>
+</div>
+
 </body>
 
-</html>";}
+</html>

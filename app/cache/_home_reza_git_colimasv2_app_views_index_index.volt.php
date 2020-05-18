@@ -1,4 +1,4 @@
-a:5:{i:0;s:2628:"<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <?= $this->assets->outputCss() ?>
 
@@ -58,12 +58,65 @@ a:5:{i:0;s:2628:"<!DOCTYPE html>
     </nav>
 </head>
 
-";s:5:"title";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:"
-";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:62;}}i:1;s:13:"
+
+
 
 <body>
-    ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:5:"
-    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:66;}}i:2;s:17:"
+    
+<!-- <h1>Welcome to Our Library</h1> -->
+<style>
+    h1 {
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 28px;
+    }
+
+    .main-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        
+        /* You need to define an explicit height! */
+        height: 0vh;
+    }
+
+    .button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 20vh;
+        transition-duration: 0.4s;
+    }
+
+    .btn{
+        border: 2px solid #008CBA;
+        padding: 10px 30px;
+        text-decoration: none;
+        font-size: 13px;
+        text-transform: uppercase;
+        background-color: white;
+    }
+    
+    .btn:hover{
+        background-color: cornflowerblue;
+    }
+
+
+
+</style>
+<img src="/img/logo-large-resize.png" style="display: block; margin-left: auto; margin-right: auto; margin-top: 0px;" alt="">
+    <div class="main-text">
+        <h1>Welcome to our Library</h1>
+    </div>
+            <div class="button">
+                <a href="/book/manage" class="btn btn-hover">View Collections</a>
+            </div>
+
+
 </body>
 
-</html>";}
+</html>

@@ -15,6 +15,7 @@ class Borrows extends Model
     public $BORROW_EXPECTEDRETURNDATE;
     public $BORROW_RETURNDATE;
     public $BORROW_STATUS;
+    public $BORROW_PENALTY;
 
     public function initialize()
     {
