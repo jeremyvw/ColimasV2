@@ -108,8 +108,8 @@ INSERT INTO CATEGORIES VALUES ('Romance');
 INSERT INTO USERS VALUES ('baronzemo', 'zemobaron', 'baronzemo@gmail.com', 'Baron Zemo', '1991-12-16T10:00:00', 'Male', '0', NULL);
 INSERT INTO USERS VALUES ('mattbellamy', 'bellamymatt', 'mattbellamy@gmail.com', 'Matt Bellamy', '1986-10-10T11:30:30', 'Male', '1', NULL); 
 
-INSERT INTO BORROWS VALUES (13, 1, '2020-04-27T10:00:00', NULL, NULL, 'Pending');
-INSERT INTO BORROWS VALUES (30, 1, '2020-04-27T10:00:00', NULL, NULL, 'Pending');
+INSERT INTO BORROWS VALUES (13, 1, '2020-04-27T10:00:00', NULL, NULL, 'Pending', NULL);
+INSERT INTO BORROWS VALUES (30, 1, '2020-04-27T10:00:00', NULL, NULL, 'Pending', NULL);
 
 INSERT INTO BOOKS VALUES ('Divine Comedy', 1990, 10, 'Lorem Ipsum', 200, 'Available', 1, NULL, 7, 1);
 
