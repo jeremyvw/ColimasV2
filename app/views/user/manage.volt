@@ -9,7 +9,6 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search Member" aria-label="Search" name="searchKey">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
-
     </div>
     <br>
     <table class="ui sortable selectable inverted brown celled table">

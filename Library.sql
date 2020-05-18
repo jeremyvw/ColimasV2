@@ -110,7 +110,7 @@ INSERT INTO USERS VALUES ('mattbellamy', 'bellamymatt', 'mattbellamy@gmail.com',
 INSERT INTO BORROWS VALUES (13, 1, '2020-04-27T10:00:00', NULL, NULL, 'Pending');
 INSERT INTO BORROWS VALUES (30, 1, '2020-04-27T10:00:00', NULL, NULL, 'Pending');
 
-INSERT INTO BOOKS VALUES ('Divine Comedy', 1990, 10, 200, 'Available', 1, 7, 1);
+INSERT INTO BOOKS VALUES ('Divine Comedy', 1990, 10, 'Lorem Ipsum', 200, 'Available', 1, NULL, 7, 1);
 
 SELECT * FROM BOOKS;
 
