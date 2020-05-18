@@ -150,9 +150,9 @@ $di->setShared('session', function () {
     return $session;
 });
 
-$di->setShared('sessionBag', function(){
-    return new Bag('bag');
-});
+// $di->setShared('sessionBag', function(){
+//     return new Bag('bag');
+// });
 
 $di->setShared('dispatcher', function() {
 
@@ -175,10 +175,10 @@ $di->setShared('dispatcher', function() {
         }
     );
 
-    $eventsManager->attach(
-        'dispatch:beforeExecuteRoute',
-        new SecurityPlugin()
-    );
+    // $eventsManager->attach(
+    //     'dispatch:beforeExecuteRoute',
+    //     new SecurityPlugin()
+    // );
 
     $dispatcher = new Dispatcher();
 
