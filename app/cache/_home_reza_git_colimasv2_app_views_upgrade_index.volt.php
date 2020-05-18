@@ -39,7 +39,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="<?= $this->url->get('/user/profile') ?>" class="dropdown-item">Profile</a>
                         <a href="<?= $this->url->get('/borrow') ?>" class="dropdown-item">Requests</a>
-                        <a href="#" class="dropdown-item">Upgrade</a>
+                        <a href="<?= $this->url->get('/upgrade/request') ?>" class="dropdown-item">Upgrade</a>
                         <div class="dropdown-divider"></div>
                         <a href="<?= $this->url->get('/session/logout') ?>" class="dropdown-item">
                             <i class="fas fa-sign-out-alt"></i>
@@ -69,36 +69,40 @@
     
 <div class="container-fluid">
     <div class="page-header" style="text-align: center;">
-        <h2>Members</h2>
-    </div>
-    <div class="card-header">
-        <form class="form-inline" method="POST" action="<?= $this->url->get('user/search') ?>">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Member" aria-label="Search" name="searchKey">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <h2>Upgraded Requests</h2>
     </div>
     <br>
-    <table class="ui sortable selectable inverted brown celled table">
+    <div>
+        <?= $this->flashSession->output() ?>
+    </div>
+    <table class="table">
         <thead>
             <tr class="center aligned">
                 <th>ID</th>
-                <th>Name</th>
-                <th>Birthdate</th>
-                <th>Gender</th>
-                <th>Category</th>
+                <th>Username</th>
+                <th>Upgrade Date</th>
+                <th>Upgrade Accept Date</th>
+                <th>Upgrade Status</th>
+                <!-- <?php if ($this->session->get('auth')['category'] == 0) { ?> -->
+                <th>Action</th>
+                <!-- <?php } ?> -->
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($results as $result) { ?>
-                <?php if ($result->USER_CATEGORY != 0) { ?>
-                    <tr class="center aligned">
-                        <th><?= $result->USER_ID ?></th>
-                        <th><?= $result->USER_NAME ?></th>
-                        <th><?= $result->USER_BIRTHDATE ?></th>
-                        <th><?= $result->USER_GENDER ?></th>
-                        <th><?= $result->USER_CATEGORY ?></th>
-                    </tr>
-                <?php } ?>
+            <?php foreach ($upgrades as $upgrade) { ?>
+            <tr class="center aligned">
+                <td><?= $upgrade->UPGRADE_ID ?></td>
+                <td><?= $upgrade->users->USER_NAME ?></td>
+                <td><?= $upgrade->UPGRADE_REQUESTDATE ?></td>
+                <td><?= $upgrade->UPGRADE_RESPONDEDTIME ?></td>
+                <td><?= $upgrade->UPGRADE_STATUS ?></td>
+
+                <!-- <?php if ($this->session->get('auth')['category'] == 0) { ?> -->
+                <td>
+                    <a href="<?= $this->url->get('/upgrade/edit/' . $upgrade->UPGRADE_ID) ?>" class="btn btn-info">Accept</a>
+                </td>
+                <!-- <?php } ?> -->
+            </tr>
             <?php } ?>
         </tbody>
     </table>

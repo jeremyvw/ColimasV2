@@ -39,7 +39,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a href="{{url('/user/profile')}}" class="dropdown-item">Profile</a>
                         <a href="{{url('/borrow')}}" class="dropdown-item">Requests</a>
-                        <a href="#" class="dropdown-item">Upgrade</a>
+                        <a href="{{url('/upgrade/request')}}" class="dropdown-item">Upgrade</a>
                         <div class="dropdown-divider"></div>
                         <a href="{{url('/session/logout')}}" class="dropdown-item">
                             <i class="fas fa-sign-out-alt"></i>
