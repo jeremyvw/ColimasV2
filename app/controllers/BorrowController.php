@@ -9,17 +9,6 @@ use App\Models\Borrows;
 
 class BorrowController extends ControllerBase
 {
-    // public function initialize()
-    // {
-    //     // $this->view->peminjaman = Peminjaman::find();
-    //     $this->view->peminjaman = Peminjaman::find('id_user = ');
-    //     $temp = $this->session->get(('auth')['id_user']); 
-    //     $temp = $this->session->get('auth')['id'];
-    //     $this->view->borrows = Borrows::findByUSER_ID($temp);
-    //     $this->view->buku = Books::find();
-    //     $this->view->penulis = Penulis::find();
-    //     $this->view->penulis = Tipe::find();
-    // }
     public function indexAction()
     {
         if(!$this->session->has('auth')){
@@ -35,12 +24,25 @@ class BorrowController extends ControllerBase
             $this->view->borrows = Borrows::findByUSER_ID($temp);
         }
     }
-    public function detailAction()
+    public function detailAction($id)
     {
-
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+        // $temp = $this->session->get('auth')['id'];
+        $cat = $this->session->get('auth')['category']; 
+        if($cat == 0){
+            $this->view->borrows = Borrows::findFirstByBORROW_ID($id);
+        }
+        else{
+            $this->response->redirect('/user/login');
+        }
     }
     public function addAction($id)
     {
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
         $book = Books::findFirstByBOOK_ID($id);
         if($book->BOOK_COUNT <= 0){
             $this->response->redirect('/book');

@@ -16,6 +16,9 @@ class UpgradeController extends ControllerBase
 
     public function indexAction()
     {
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
         // if(!$this->session->has('auth')){
         //     $this->response->redirect('/auth/login');
         // }

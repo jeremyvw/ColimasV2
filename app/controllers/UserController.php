@@ -18,21 +18,20 @@ class UserController extends ControllerBase
     
     public function manageAction()
     {
-        $this->view->users = Users::find();
-
-        
-        // $query = new Query(
-        //     'SELECT * FROM Users WHERE USER_CATEGORY!=0',
-        //     $this->di
-        // );
-        // $users = $query->execute();
-        // $this->view->setVar('users', $users);
-        
-        
-        // $query = $this->modelsManager->createQuery('SELECT * FROM Users');
-        // $results = $query->execute();
-        // $this->view->results = $results;
-        
+        if($this->session->has('auth')){
+            if($this->session->get('auth')['category'] != 0)
+            {
+                $this->response->redirect('/');
+            }
+            else
+            {
+                $this->view->users = Users::find();
+            }
+        }
+        else
+        {
+            $this->response->redirect('/user/login');
+        }
     } 
 
     public function profileAction()
@@ -109,34 +108,48 @@ class UserController extends ControllerBase
 
     public function searchAction()
     {
-        $searchKey = $this->request->getPost('searchKey');
-        $searchBy = $this->request->getPost('searchBy');
-        $searchKey = '%'.$searchKey.'%';
-        if($searchBy == 'USER_NAME'){
-            $searchKey = '%'.$searchKey.'%';
-            $query = $this->modelsManager->createQuery('SELECT * FROM Users
-            WHERE USER_NAME LIKE :searchKey:');
-            $results = $query->execute([
-                'searchKey' => $searchKey,
-            ]);
+        if($this->session->has('auth')){
+            if($this->session->get('auth')['category'] != 0)
+            {
+                $this->response->redirect('/');
+            }
+            else
+            {
+                $searchKey = $this->request->getPost('searchKey');
+                $searchBy = $this->request->getPost('searchBy');
+                $searchKey = '%'.$searchKey.'%';
+                if($searchBy == 'USER_NAME'){
+                    $searchKey = '%'.$searchKey.'%';
+                    $query = $this->modelsManager->createQuery('SELECT * FROM Users
+                    WHERE USER_NAME LIKE :searchKey:');
+                    $results = $query->execute([
+                        'searchKey' => $searchKey,
+                    ]);
+                }
+                else if($searchBy == 'USER_CATEGORY'){
+                    $searchKey = '%'.$searchKey.'%';
+                    $query = $this->modelsManager->createQuery('SELECT * FROM Users
+                    WHERE USER_CATEGORY LIKE :searchKey:');
+                    $results = $query->execute([
+                        'searchKey' => $searchKey,
+                    ]);
+                }
+                else{
+                    $results = Users::query()
+                        ->where('USER_NAME LIKE :USER_NAME:')
+                        ->bind(
+                            [
+                                'USER_NAME' => $searchKey,
+                            ]
+                        )
+                        ->execute();
+                }
+                $this->view->results = $results;
+            }
         }
-        else if($searchBy == 'USER_CATEGORY'){
-            $searchKey = '%'.$searchKey.'%';
-            $query = $this->modelsManager->createQuery('SELECT * FROM Users
-            WHERE USER_CATEGORY LIKE :searchKey:');
-            $results = $query->execute([
-                'searchKey' => $searchKey,
-            ]);
-        }
-        else{
-            $results = Users::query()
-                ->where('USER_NAME LIKE :USER_NAME:')
-                ->bind(
-                    [
-                        'USER_NAME' => $searchKey,
-                    ]
-                )
-                ->execute();
+        else
+        {
+            $this->response->redirect('/user/login');
         }
         $this->view->results = $results;
     }
