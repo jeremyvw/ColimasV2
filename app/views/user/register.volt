@@ -60,7 +60,7 @@
                         </div>
                         <div style="padding-bottom: 30px;">
                             <label for="coverimage">Profile Picture (Optional)</label>
-                            <input type="file" class="form-control-file" name="profilepict">
+                            <input type="file" class="form-control-file" name="profile">
                         </div>
                         <button class="btn btn-lg btn-success btn-block btn-login text-uppercase font-weight-bold mb-2"
                             type="submit" value="Login">Register</button>

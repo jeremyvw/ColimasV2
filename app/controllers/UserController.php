@@ -15,7 +15,7 @@ class UserController extends ControllerBase
     {
         $this->view->users = Users::find();
     }
-
+    
     public function manageAction()
     {
         $this->view->users = Users::find();
@@ -37,19 +37,64 @@ class UserController extends ControllerBase
 
     public function profileAction()
     {
-
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+        $usr = Users::findFirstByUSER_ID($this->session->get('auth')['id']);
+        $this->view->user = $usr; 
     }
 
-    public function editAction($id)
+    public function editAction()
     {
-        $user = Users::findFirstByUSER_ID($id);
-
-        $this->view->user = $user;
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+        $usr = Users::findFirstByUSER_ID($this->session->get('auth')['id']);
+        $this->view->user = $usr; 
     }
 
     public function updateAction()
     {
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+        $user = Users::findFirstByUSER_ID($this->session->get('auth')['id']);
 
+
+        $username = $this->request->getPost('username');
+        $name = $this->request->getPost('name');
+        $birthdate = $this->request->getPost('birthdate');
+        $gender = $this->request->getPost('gender');
+        
+        if($this->request->hasFiles())
+        {
+            unlink($user->USER_PHOTO);
+            $image = $this->request->getUploadedFiles()[0];
+            $path = 'img/profiles/'.$image->getName();
+            $user->USER_PHOTO = $path;
+            $image->moveTo($path);
+        }
+        else 
+        {
+            $user->USER_PHOTO = 'img/profiles/basicpict.png';
+        }
+
+        $user->USER_USERNAME = $username;
+        $user->USER_PASSWORD = $user->USER_PASSWORD;
+        $user->USER_EMAIL = $user->USER_EMAIL;
+        $user->USER_NAME = $name;
+        $user->USER_BIRTHDATE = $birthdate;
+        $user->USER_GENDER = $gender;
+        $user->USER_CATEGORY = $user->USER_CATEGORY;
+        // $user->USER_PHOTO = $path;
+
+        $success = $user->save();
+
+        if($success)
+        {
+            
+        }
+        $this->response->redirect('/user/profile');
     }
 
     public function registerAction()

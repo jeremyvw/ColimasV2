@@ -1,12 +1,14 @@
-a:5:{i:0;s:2622:"<!DOCTYPE html>
+a:5:{i:0;s:2635:"<!DOCTYPE html>
 <html lang="en">
-    <?= $this->assets->outputCss() ?>
+<?= $this->assets->outputCss() ?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Colimas</title>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(150, 180, 255, 1);">
-        <a href="<?= $this->url->get('/') ?>" class="navbar-brand"><img src="/img/logo-small-navbar-resize.png" width="120" height="50" alt=""></a>
+        <a href="<?= $this->url->get('/') ?>" class="navbar-brand"><img src="/img/logo-small-navbar-resize.png" width="120" height="50"
+                alt=""></a>
         <button class="navbar-toggler" data-toogle="collapse" data-target="#navbarMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,11 +59,11 @@ a:5:{i:0;s:2622:"<!DOCTYPE html>
 </head>
 
 ";s:5:"title";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:"
-";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:60;}}i:1;s:13:"
+";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:62;}}i:1;s:13:"
 
 <body>
     ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:5:"
-    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:64;}}i:2;s:17:"
+    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:66;}}i:2;s:17:"
 </body>
-</html>
-";}
+
+</html>";}
