@@ -22,14 +22,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for user in users %}
-                {% if user.USER_CATEGORY!=0 %}
+            {% for result in results %}
+                {% if result.USER_CATEGORY!=0 %}
                     <tr class="center aligned">
-                        <th>{{user.USER_ID}}</th>
-                        <th>{{user.USER_NAME}}</th>
-                        <th>{{user.USER_BIRTHDATE}}</th>
-                        <th>{{user.USER_GENDER}}</th>
-                        <th>{{user.USER_CATEGORY}}</th>
+                        <th>{{result.USER_ID}}</th>
+                        <th>{{result.USER_NAME}}</th>
+                        <th>{{result.USER_BIRTHDATE}}</th>
+                        <th>{{result.USER_GENDER}}</th>
+                        <th>{{result.USER_CATEGORY}}</th>
                     </tr>
                 {% endif %}
             {% endfor %}
