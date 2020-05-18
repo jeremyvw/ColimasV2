@@ -63,73 +63,59 @@
 
 <body>
     
-<div class="container">
-    <div class="page-header" style="text-align: center;">
-        <h2>Collections</h2>
+<!-- <h1>Welcome to Our Library</h1> -->
+<style>
+    h1 {
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: 28px;
+    }
+
+    .main-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        
+        /* You need to define an explicit height! */
+        height: 0vh;
+    }
+
+    .button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 20vh;
+        transition-duration: 0.4s;
+    }
+
+    .btn{
+        border: 2px solid #008CBA;
+        padding: 10px 30px;
+        text-decoration: none;
+        font-size: 13px;
+        text-transform: uppercase;
+        background-color: white;
+    }
+    
+    .btn:hover{
+        background-color: cornflowerblue;
+    }
+
+
+
+</style>
+<img src="/img/logo-large-resize.png" style="display: block; margin-left: auto; margin-right: auto; margin-top: 0px;" alt="">
+    <div class="main-text">
+        <h1>Welcome to our Library</h1>
     </div>
-    <div class="page-header">
-        <a href="<?= $this->url->get('/book/manage') ?>" class="btn btn-secondary">Back</a>
-    </div>
-    <div class="page-header" style="text-align: center;">
-        <form class="form-inline" method="POST" action="<?= $this->url->get('book/search') ?>">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search"
-                name="searchKey">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-    <br>
-    <?php if ($this->session->get('auth')) { ?>
-    <div class="page-header">
-        <a href="<?= $this->url->get('book/create') ?>" class="btn btn-primary">Add New Book into Collection</a>
-        <br>
-    </div>
-    <?php } ?>
-    <div>
-        <?= $this->flashSession->output() ?>
-        <br>
-    </div>
-    <table class="ui sortable selectable inverted brown celled table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Shelf</th>
-                <th>Pages</th>
-                <th>Status</th>
-                <th>Count</th>
-                <th>Author</th>
-                <th>Category</th>
-                <?php if ($this->session->get('auth')) { ?>
-                <th>Action</th>
-                <?php } ?>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($results as $result) { ?>
-            <tr>
-                <td><?= $result->BOOK_ID ?></td>
-                <td><?= $result->BOOK_TITLE ?></td>
-                <td><?= $result->BOOK_YEAR ?></td>
-                <td><?= $result->BOOK_SHELF ?></td>
-                <td><?= $result->BOOK_PAGECOUNT ?></td>
-                <td><?= $result->BOOK_STATUS ?></td>
-                <td><?= $result->BOOK_COUNT ?></td>
-                <td><?= $result->authors->AUTHOR_NAME ?></td>
-                <td><?= $result->categories->CATEGORY_NAME ?></td>
-                <?php if ($this->session->get('auth')) { ?>
-                <td>
-                    <a href="<?= $this->url->get('/book/edit/' . $result->BOOK_ID) ?>" class="btn btn-primary"><span
-                            class="fas fa-plus"></span>Edit</a>
-                    <a href="<?= $this->url->get('/book/destroy/' . $result->BOOK_ID) ?>" class="btn btn-danger"><span
-                            class="fas fa-plus"></span>Delete</a>
-                </td>
-                <?php } ?>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-</div>
+            <div class="button">
+                <a href="/book/manage" class="btn btn-hover">View Collections</a>
+            </div>
+
 
 </body>
 
