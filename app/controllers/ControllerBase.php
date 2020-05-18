@@ -12,5 +12,7 @@ class ControllerBase extends Controller
     {
         $this->assets->addCss('/css/main.css');
         // $this->assets->addCss('/css/util.css');
+        $this->assets->addCss('/css/home.css');
+        $this->assets->addCss('/css/slider.css');
     }
 }
