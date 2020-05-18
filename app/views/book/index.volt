@@ -51,7 +51,7 @@
                 <td>{{book.BOOK_COUNT}}</td>
                 <td>{{book.authors.AUTHOR_NAME}}</td>
                 <td>{{book.categories.CATEGORY_NAME}}</td>
-                {% if session.get('auth')['category'] == 1 %}
+                {% if session.get('auth')['category'] == 0 %}
                 <td>
                     <a href="{{url('/book/edit/'~book.BOOK_ID)}}" class="btn btn-primary">Edit</a>
                     <a href="{{url('/book/destroy/'~book.BOOK_ID)}}" class="btn btn-danger">Delete</a>

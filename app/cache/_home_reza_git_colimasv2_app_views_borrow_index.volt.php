@@ -82,7 +82,9 @@
                 <th>Return Date</th>
                 <th>Status</th>
                 <th>Denda</th>
+                <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <th>Action</th>
+                <?php } ?>
             </tr>
         </thead>
         <tbody>
@@ -97,9 +99,12 @@
                 <td><?= $borrow->BORROW_RETURNDATE ?></td>
                 <td><?= $borrow->BORROW_STATUS ?></td>
                 <td><?= $borrow->BORROW_PENALTY ?></td>
+
+                <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <td>
                     <a href="<?= $this->url->get('/borrow/detail/' . $borrow->BORROW_ID) ?>" class="btn btn-info">View Detail</a>
                 </td>
+                <?php } ?>
             </tr>
             <?php } ?>
         </tbody>

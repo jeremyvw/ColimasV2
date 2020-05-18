@@ -113,7 +113,7 @@
                 <td><?= $book->BOOK_COUNT ?></td>
                 <td><?= $book->authors->AUTHOR_NAME ?></td>
                 <td><?= $book->categories->CATEGORY_NAME ?></td>
-                <?php if ($this->session->get('auth')['category'] == 1) { ?>
+                <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <td>
                     <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary">Edit</a>
                     <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger">Delete</a>

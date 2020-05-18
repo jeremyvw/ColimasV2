@@ -20,7 +20,9 @@
                 <th>Return Date</th>
                 <th>Status</th>
                 <th>Denda</th>
+                {% if session.get('auth')['category'] == 0 %}
                 <th>Action</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -35,9 +37,12 @@
                 <td>{{borrow.BORROW_RETURNDATE}}</td>
                 <td>{{borrow.BORROW_STATUS}}</td>
                 <td>{{borrow.BORROW_PENALTY}}</td>
+
+                {% if session.get('auth')['category'] == 0 %}
                 <td>
                     <a href="{{url('/borrow/detail/'~borrow.BORROW_ID)}}" class="btn btn-info">View Detail</a>
                 </td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
