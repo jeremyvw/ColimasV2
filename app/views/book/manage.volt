@@ -6,7 +6,7 @@
     </div>
     <div class="page-header" style="text-align: center;">
         <form class="form-inline" method="POST" action="{{url('book/search')}}">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Member" aria-label="Search" name="searchKey">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search" name="searchKey">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
