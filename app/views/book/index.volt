@@ -12,11 +12,13 @@
         </form>
     </div>
     <br>
+    {% if session.get('auth') %}
     {% if session.get('auth')['category'] == 0 %}
     <div class="page-header">
         <a href="{{url('book/create')}}" class="btn btn-primary">Add New Book into Collection</a>
         <br>
     </div>
+    {% endif %}
     {% endif %}
     <div>
         {{ flashSession.output() }}
@@ -51,6 +53,7 @@
                 <td>{{book.BOOK_COUNT}}</td>
                 <td>{{book.authors.AUTHOR_NAME}}</td>
                 <td>{{book.categories.CATEGORY_NAME}}</td>
+                {% if session.get('auth') %}
                 {% if session.get('auth')['category'] == 0 %}
                 <td>
                     <a href="{{url('/book/edit/'~book.BOOK_ID)}}" class="btn btn-primary">Edit</a>
@@ -67,6 +70,7 @@
                 </td>
                 {% endif %}
                 {% else %}
+                {% endif %}
                 {% endif %}
             </tr>
             {% endfor %}

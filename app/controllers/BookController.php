@@ -18,16 +18,33 @@ class BookController extends ControllerBase
 
     public function createAction()
     {
-        $this->view->authors = Authors::find();
-        $this->view->categories = Categories::find();
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
 
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $this->view->authors = Authors::find();
+            $this->view->categories = Categories::find();
+        }
+        else{
+            $this->view->borrows = Borrows::findByUSER_ID($temp);
+        }
     }
 
     public function addAction()
     {
-        $book = new Books();
-        $this->view->authors = Authors::find();
-        $this->view->categories = Categories::find();
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $book = new Books();
+            $this->view->authors = Authors::find();
+            $this->view->categories = Categories::find();
 
         // $validation = new BookValidation();
         // $messages = $validation->validate($_POST);
@@ -99,6 +116,10 @@ class BookController extends ControllerBase
                 $this->response->redirect('/book/manage');
             
             }
+        }
+        else{
+            $this->view->borrows = Borrows::findByUSER_ID($temp);
+        }
     }
 
     public function editAction($id)
