@@ -9,20 +9,31 @@ use App\Models\Borrows;
 
 class BorrowController extends ControllerBase
 {
-    public function initialize()
-    {
-        // // $this->view->peminjaman = Peminjaman::find();
-        // $this->view->peminjaman = Peminjaman::find('id_user = ');
-        // $temp = $this->session->get(('auth')['id_user']); 
-        $temp = $this->session->get('auth')['id'];
-        $this->view->borrows = Borrows::findByUSER_ID($temp);
-        $this->view->buku = Books::find();
-        // $this->view->penulis = Penulis::find();
-        // $this->view->penulis = Tipe::find();
-    }
+    // public function initialize()
+    // {
+    //     // $this->view->peminjaman = Peminjaman::find();
+    //     $this->view->peminjaman = Peminjaman::find('id_user = ');
+    //     $temp = $this->session->get(('auth')['id_user']); 
+    //     $temp = $this->session->get('auth')['id'];
+    //     $this->view->borrows = Borrows::findByUSER_ID($temp);
+    //     $this->view->buku = Books::find();
+    //     $this->view->penulis = Penulis::find();
+    //     $this->view->penulis = Tipe::find();
+    // }
     public function indexAction()
     {
-        
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $this->view->borrows = Borrows::find();
+        }
+        else{
+            $this->view->borrows = Borrows::findByUSER_ID($temp);
+        }
     }
     public function detailAction()
     {
@@ -56,9 +67,12 @@ class BorrowController extends ControllerBase
             $borrow->BORROW_STATUS="Pending";
             $borrow->BORROW_STARTDATE = date('Y-m-d h:i:sa');
             $date = date('Y-m-d h:i:sa');
-            $borrow->BORROW_RETURNDATE = strftime("%Y-%m-%d %H:%M:%S", strtotime("$date +7 day"));
+            // $borrow->BORROW_RETURNDATE = strftime("%Y-%m-%d %H:%M:%S", strtotime("$date +7 day"));
             $borrow->BORROW_EXPECTEDRETURNDATE = strftime("%Y-%m-%d %H:%M:%S", strtotime("$date +3 day"));
-            $borrow->BORROW_PENALTY = ((strtotime($borrow->BORROW_RETURNDATE) - strtotime($borrow->BORROW_EXPECTEDRETURNDATE))/86400)*10000;
+            if($borrow->BORROW_RETURNDATE)
+            {
+                $borrow->BORROW_PENALTY = ((strtotime($borrow->BORROW_RETURNDATE) - strtotime($borrow->BORROW_EXPECTEDRETURNDATE))/86400)*10000;
+            }
             $success = $borrow->save();
 
             if($success)

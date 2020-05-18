@@ -17,6 +17,7 @@
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/book') ?>" class="nav-link">Collections</a>
                 </li>
+                <?php if ($this->session->get('auth')) { ?>
                 <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/user/manage') ?>" class="nav-link">Members</a>
@@ -24,6 +25,7 @@
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/borrow') ?>" class="nav-link">Requests</a>
                 </li>
+                <?php } ?>
                 <?php } ?>
             </ul>
         </div>
@@ -67,77 +69,46 @@
     
 <div class="container-fluid">
     <div class="page-header" style="text-align: center;">
-        <h2>Collections</h2>
-    </div>
-    <div class="page-header">
-        <form class="form-inline">
-            <a href="<?= $this->url->get('/book/manage') ?>" class="btn btn-secondary">Back</a>
-        </form>
+        <h2>Borrow Requests</h2>
     </div>
     <br>
-    <div class="page-header" style="text-align: center;">
-        <form class="form-inline" method="POST" action="<?= $this->url->get('book/search') ?>">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search"
-                name="searchKey">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-    </div>
-    <br>
-    <?php if ($this->session->get('auth')['category'] == 0) { ?>
-    <div class="page-header">
-        <a href="<?= $this->url->get('book/create') ?>" class="btn btn-primary">Add New Book into Collection</a>
-        <br>
-    </div>
-    <?php } ?>
     <div>
         <?= $this->flashSession->output() ?>
-        <br>
     </div>
-    <table class="ui sortable selectable inverted brown celled table">
+    <table class="table">
         <thead>
-            <tr>
+            <tr class="center aligned">
                 <th>ID</th>
-                <th>Title</th>
-                <th>Year</th>
-                <th>Shelf</th>
-                <th>Pages</th>
+                <th>Book</th>
+                <th>Member</th>
+                <th>Member Category</th>
+                <th>Start Date</th>
+                <th>Expected Return</th>
+                <th>Return Date</th>
                 <th>Status</th>
-                <th>Count</th>
-                <th>Author</th>
-                <th>Category</th>
-                <?php if ($this->session->get('auth')) { ?>
+                <th>Denda</th>
+                <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <th>Action</th>
                 <?php } ?>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($results as $result) { ?>
-            <tr>
-                <td><?= $result->BOOK_ID ?></td>
-                <td><?= $result->BOOK_TITLE ?></td>
-                <td><?= $result->BOOK_YEAR ?></td>
-                <td><?= $result->BOOK_SHELF ?></td>
-                <td><?= $result->BOOK_PAGECOUNT ?></td>
-                <td><?= $result->BOOK_STATUS ?></td>
-                <td><?= $result->BOOK_COUNT ?></td>
-                <td><?= $result->authors->AUTHOR_NAME ?></td>
-                <td><?= $result->categories->CATEGORY_NAME ?></td>
+            <?php foreach ($borrows as $borrow) { ?>
+            <tr class="center aligned">
+                <td><?= $borrow->BORROW_ID ?></td>
+                <td><?= $borrow->books->BOOK_TITLE ?></td>
+                <td><?= $borrow->users->USER_NAME ?></td>
+                <td><?= $borrow->users->USER_CATEGORY ?></td>
+                <td><?= $borrow->BORROW_STARTDATE ?></td>
+                <td><?= $borrow->BORROW_EXPECTEDRETURNDATE ?></td>
+                <td><?= $borrow->BORROW_RETURNDATE ?></td>
+                <td><?= $borrow->BORROW_STATUS ?></td>
+                <td><?= $borrow->BORROW_PENALTY ?></td>
+
                 <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <td>
-                    <a href="<?= $this->url->get('/book/edit/' . $result->BOOK_ID) ?>" class="btn btn-primary">Edit</a>
-                    <a href="<?= $this->url->get('/book/destroy/' . $result->BOOK_ID) ?>" class="btn btn-danger">Delete</a>
+                    <a href="<?= $this->url->get('/borrow/detail/' . $borrow->BORROW_ID) ?>" class="btn btn-info">View Detail</a>
                 </td>
-                <?php } elseif ($this->session->get('auth')) { ?>
-                <?php if ($result->BOOK_COUNT == 0) { ?>
-                <td>
-                    <a href="<?= $this->url->get('borrow/add/' . $result->BOOK_ID) ?>" class="btn btn-success btn-sm disabled">Pinjam</a>
-                </td>
-                <?php } else { ?>
-                <td>
-                    <a href="<?= $this->url->get('borrow/add/' . $result->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
-                </td>
-                <?php } ?>
-                <?php } else { ?>
                 <?php } ?>
             </tr>
             <?php } ?>

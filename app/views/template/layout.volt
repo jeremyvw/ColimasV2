@@ -17,6 +17,7 @@
                 <li class="nav-item">
                     <a href="{{url('/book')}}" class="nav-link">Collections</a>
                 </li>
+                {% if session.get('auth') %}
                 {% if session.get('auth')['category'] == 0 %}
                 <li class="nav-item">
                     <a href="{{url('/user/manage')}}" class="nav-link">Members</a>
@@ -24,6 +25,7 @@
                 <li class="nav-item">
                     <a href="{{url('/borrow')}}" class="nav-link">Requests</a>
                 </li>
+                {% endif %}
                 {% endif %}
             </ul>
         </div>

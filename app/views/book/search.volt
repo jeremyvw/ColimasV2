@@ -6,7 +6,7 @@
     </div>
     <div class="page-header">
         <form class="form-inline">
-            <a href="{{url('/book/manage')}}" class="btn btn-secondary">Back</a>
+            <a href="{{url('/book')}}" class="btn btn-secondary">Back</a>
         </form>
     </div>
     <br>
