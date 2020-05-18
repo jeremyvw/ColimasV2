@@ -32,7 +32,7 @@
                     <a href="<?= $this->url->get('/user/manage') ?>" class="nav-link">Members</a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?= $this->url->get('/borrow/manage') ?>" class="nav-link">Requests</a>
+                    <a href="<?= $this->url->get('/borrow') ?>" class="nav-link">Requests</a>
                 </li>
                 <li class="nav-item">
                     <span class="nav-link">Welcome, <?= $this->session->get('auth')['name'] ?></span>
@@ -69,7 +69,8 @@
     </div>
     <div class="page-header" style="text-align: center;">
         <form class="form-inline" method="POST" action="<?= $this->url->get('book/search') ?>">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search" name="searchKey">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search"
+                name="searchKey">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </div>
@@ -115,8 +116,13 @@
                 <td><?= $book->categories->CATEGORY_NAME ?></td>
                 <?php if ($this->session->get('auth')) { ?>
                 <td>
-                    <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary"><span class="fas fa-plus"></span>Edit</a>
-                    <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger"><span class="fas fa-plus"></span>Delete</a>
+                    <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary"><span
+                            class="fas fa-plus"></span>Edit</a>
+                    <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger"><span
+                            class="fas fa-plus"></span>Delete</a>
+                </td>
+                <td>
+                    <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
                 </td>
                 <?php } ?>
             </tr>
