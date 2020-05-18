@@ -41,15 +41,15 @@
         <tbody>
             {% for result in results %}
             <tr>
-                <td>{{book.BOOK_ID}}</td>
-                <td>{{book.BOOK_TITLE}}</td>
-                <td>{{book.BOOK_YEAR}}</td>
-                <td>{{book.BOOK_SHELF}}</td>
-                <td>{{book.BOOK_PAGECOUNT}}</td>
-                <td>{{book.BOOK_STATUS}}</td>
-                <td>{{book.BOOK_COUNT}}</td>
-                <td>{{book.authors.AUTHOR_NAME}}</td>
-                <td>{{book.categories.CATEGORY_NAME}}</td>
+                <td>{{result.BOOK_ID}}</td>
+                <td>{{result.BOOK_TITLE}}</td>
+                <td>{{result.BOOK_YEAR}}</td>
+                <td>{{result.BOOK_SHELF}}</td>
+                <td>{{result.BOOK_PAGECOUNT}}</td>
+                <td>{{result.BOOK_STATUS}}</td>
+                <td>{{result.BOOK_COUNT}}</td>
+                <td>{{result.authors.AUTHOR_NAME}}</td>
+                <td>{{result.categories.CATEGORY_NAME}}</td>
                 {% if session.get('auth') %}
                 <td>
                     <a href="{{url('/book/edit/'~book.BOOK_ID)}}" class="btn btn-primary"><span class="fas fa-plus"></span>Edit</a>
