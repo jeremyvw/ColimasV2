@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/user/manage') ?>" class="nav-link">Members</a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= $this->url->get('/borrow') ?>" class="nav-link">Requests</a>
+                </li>
                 <?php } ?>
             </ul>
         </div>
@@ -118,16 +121,17 @@
                     <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary">Edit</a>
                     <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger">Delete</a>
                 </td>
-                <?php } else { ?>
+                <?php } elseif ($this->session->get('auth')) { ?>
                 <?php if ($book->BOOK_COUNT == 0) { ?>
                 <td>
-                    <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
+                    <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm disabled">Pinjam</a>
                 </td>
                 <?php } else { ?>
                 <td>
                     <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
                 </td>
                 <?php } ?>
+                <?php } else { ?>
                 <?php } ?>
             </tr>
             <?php } ?>

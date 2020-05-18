@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a href="{{url('/user/manage')}}" class="nav-link">Members</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{url('/borrow')}}" class="nav-link">Requests</a>
+                </li>
                 {% endif %}
             </ul>
         </div>

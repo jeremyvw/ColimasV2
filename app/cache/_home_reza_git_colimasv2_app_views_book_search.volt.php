@@ -15,33 +15,35 @@
         <div class="collapse navbar-collapse" id="navbarMenu">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a href="<?= $this->url->get('/') ?>" class="nav-link">Home</a>
+                    <a href="<?= $this->url->get('/book') ?>" class="nav-link">Collections</a>
                 </li>
-                <li class="nav-item">
-                    <a href="<?= $this->url->get('/book/manage') ?>" class="nav-link">Collections</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a href="<?= $this->url->get('/user/login') ?>" class="nav-link">Login</a>
-                </li> -->
-            </ul>
-        </div>
-        <div class="collapse navbar-collapse">
-            <?php if ($this->session->get('auth')) { ?>
-            <ul class="navbar-nav ml-auto">
+                <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/user/manage') ?>" class="nav-link">Members</a>
                 </li>
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/borrow') ?>" class="nav-link">Requests</a>
                 </li>
-                <li class="nav-item">
-                    <span class="nav-link">Welcome, <?= $this->session->get('auth')['name'] ?></span>
-                </li>
-                <li class="nav-item">
-                    <a href="<?= $this->url->get('/session/logout') ?>" class="nav-link">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
+                <?php } ?>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse">
+            <?php if ($this->session->get('auth')) { ?>
+            <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown"><strong>Welcome,
+                            <?= $this->session->get('auth')['name'] ?></strong></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="<?= $this->url->get('/user/profile') ?>" class="dropdown-item">Profile</a>
+                        <a href="<?= $this->url->get('/borrow') ?>" class="dropdown-item">Requests</a>
+                        <a href="#" class="dropdown-item">Upgrade</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="<?= $this->url->get('/session/logout') ?>" class="dropdown-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </a>
+                    </div>
                 </li>
             </ul>
             <?php } else { ?>
@@ -63,10 +65,16 @@
 
 <body>
     
-<div class="container">
+<div class="container-fluid">
     <div class="page-header" style="text-align: center;">
         <h2>Collections</h2>
     </div>
+    <div class="page-header">
+        <form class="form-inline">
+            <a href="<?= $this->url->get('/book/manage') ?>" class="btn btn-secondary">Back</a>
+        </form>
+    </div>
+    <br>
     <div class="page-header" style="text-align: center;">
         <form class="form-inline" method="POST" action="<?= $this->url->get('book/search') ?>">
             <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search"
@@ -75,7 +83,7 @@
         </form>
     </div>
     <br>
-    <?php if ($this->session->get('auth')) { ?>
+    <?php if ($this->session->get('auth')['category'] == 0) { ?>
     <div class="page-header">
         <a href="<?= $this->url->get('book/create') ?>" class="btn btn-primary">Add New Book into Collection</a>
         <br>
@@ -103,27 +111,33 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($books as $book) { ?>
+            <?php foreach ($results as $result) { ?>
             <tr>
-                <td><?= $book->BOOK_ID ?></td>
-                <td><?= $book->BOOK_TITLE ?></td>
-                <td><?= $book->BOOK_YEAR ?></td>
-                <td><?= $book->BOOK_SHELF ?></td>
-                <td><?= $book->BOOK_PAGECOUNT ?></td>
-                <td><?= $book->BOOK_STATUS ?></td>
-                <td><?= $book->BOOK_COUNT ?></td>
-                <td><?= $book->authors->AUTHOR_NAME ?></td>
-                <td><?= $book->categories->CATEGORY_NAME ?></td>
-                <?php if ($this->session->get('auth')) { ?>
+                <td><?= $result->BOOK_ID ?></td>
+                <td><?= $result->BOOK_TITLE ?></td>
+                <td><?= $result->BOOK_YEAR ?></td>
+                <td><?= $result->BOOK_SHELF ?></td>
+                <td><?= $result->BOOK_PAGECOUNT ?></td>
+                <td><?= $result->BOOK_STATUS ?></td>
+                <td><?= $result->BOOK_COUNT ?></td>
+                <td><?= $result->authors->AUTHOR_NAME ?></td>
+                <td><?= $result->categories->CATEGORY_NAME ?></td>
+                <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <td>
-                    <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary"><span
-                            class="fas fa-plus"></span>Edit</a>
-                    <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger"><span
-                            class="fas fa-plus"></span>Delete</a>
+                    <a href="<?= $this->url->get('/book/edit/' . $result->BOOK_ID) ?>" class="btn btn-primary">Edit</a>
+                    <a href="<?= $this->url->get('/book/destroy/' . $result->BOOK_ID) ?>" class="btn btn-danger">Delete</a>
                 </td>
+                <?php } elseif ($this->session->get('auth')) { ?>
+                <?php if ($result->BOOK_COUNT == 0) { ?>
                 <td>
-                    <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
+                    <a href="<?= $this->url->get('borrow/add/' . $result->BOOK_ID) ?>" class="btn btn-success btn-sm disabled">Pinjam</a>
                 </td>
+                <?php } else { ?>
+                <td>
+                    <a href="<?= $this->url->get('borrow/add/' . $result->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
+                </td>
+                <?php } ?>
+                <?php } else { ?>
                 <?php } ?>
             </tr>
             <?php } ?>

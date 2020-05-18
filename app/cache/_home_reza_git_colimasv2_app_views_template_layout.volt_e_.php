@@ -1,4 +1,4 @@
-a:5:{i:0;s:2765:"<!DOCTYPE html>
+a:5:{i:0;s:2919:"<!DOCTYPE html>
 <html lang="en">
 <?= $this->assets->outputCss() ?>
 
@@ -20,6 +20,9 @@ a:5:{i:0;s:2765:"<!DOCTYPE html>
                 <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/user/manage') ?>" class="nav-link">Members</a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?= $this->url->get('/borrow') ?>" class="nav-link">Requests</a>
                 </li>
                 <?php } ?>
             </ul>
@@ -58,11 +61,11 @@ a:5:{i:0;s:2765:"<!DOCTYPE html>
 </head>
 
 ";s:5:"title";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:"
-";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:61;}}i:1;s:13:"
+";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:64;}}i:1;s:13:"
 
 <body>
     ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:5:"
-    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:65;}}i:2;s:17:"
+    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:68;}}i:2;s:17:"
 </body>
 
 </html>";}

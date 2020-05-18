@@ -1,6 +1,6 @@
 {% extends 'template/layout.volt' %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
     <div class="page-header" style="text-align: center;">
         <h2>Collections</h2>
     </div>
@@ -18,7 +18,7 @@
         </form>
     </div>
     <br>
-    {% if session.get('auth') %}
+    {% if session.get('auth')['category'] == 0 %}
     <div class="page-header">
         <a href="{{url('book/create')}}" class="btn btn-primary">Add New Book into Collection</a>
         <br>
@@ -57,13 +57,22 @@
                 <td>{{result.BOOK_COUNT}}</td>
                 <td>{{result.authors.AUTHOR_NAME}}</td>
                 <td>{{result.categories.CATEGORY_NAME}}</td>
-                {% if session.get('auth') %}
+                {% if session.get('auth')['category'] == 0 %}
                 <td>
-                    <a href="{{url('/book/edit/'~result.BOOK_ID)}}" class="btn btn-primary"><span
-                            class="fas fa-plus"></span>Edit</a>
-                    <a href="{{url('/book/destroy/'~result.BOOK_ID)}}" class="btn btn-danger"><span
-                            class="fas fa-plus"></span>Delete</a>
+                    <a href="{{url('/book/edit/'~result.BOOK_ID)}}" class="btn btn-primary">Edit</a>
+                    <a href="{{url('/book/destroy/'~result.BOOK_ID)}}" class="btn btn-danger">Delete</a>
                 </td>
+                {% elseif session.get('auth') %}
+                {% if result.BOOK_COUNT == 0 %}
+                <td>
+                    <a href="{{url('borrow/add/'~result.BOOK_ID) }}" class="btn btn-success btn-sm disabled">Pinjam</a>
+                </td>
+                {% else %}
+                <td>
+                    <a href="{{url('borrow/add/'~result.BOOK_ID) }}" class="btn btn-success btn-sm">Pinjam</a>
+                </td>
+                {% endif %}
+                {% else %}
                 {% endif %}
             </tr>
             {% endfor %}

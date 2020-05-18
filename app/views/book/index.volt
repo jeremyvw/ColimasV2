@@ -56,16 +56,17 @@
                     <a href="{{url('/book/edit/'~book.BOOK_ID)}}" class="btn btn-primary">Edit</a>
                     <a href="{{url('/book/destroy/'~book.BOOK_ID)}}" class="btn btn-danger">Delete</a>
                 </td>
-                {% else %}
+                {% elseif session.get('auth') %}
                 {% if book.BOOK_COUNT == 0 %}
                 <td>
-                    <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm">Pinjam</a>
+                    <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm disabled">Pinjam</a>
                 </td>
                 {% else %}
                 <td>
                     <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm">Pinjam</a>
                 </td>
                 {% endif %}
+                {% else %}
                 {% endif %}
             </tr>
             {% endfor %}

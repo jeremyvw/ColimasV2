@@ -7,17 +7,13 @@ use App\Validation\BookValidation;
 use App\Models\Books;
 use App\Models\Authors;
 use App\Models\Categories;
+use Phalcon\Mvc\Model\Manager;
 
 class BookController extends ControllerBase
 {
     public function indexAction()
     {
         $this->view->books = Books::find();
-    }
-
-    public function manageAction()
-    {
-
     }
 
     public function createAction()
@@ -202,13 +198,13 @@ class BookController extends ControllerBase
         }
         else{
             $results = Books::query()
-                ->where('BOOK_TITLE LIKE :BOOK_TITLE:')
-                ->bind(
-                    [
-                        'BOOK_TITLE' => $searchKey,
-                    ]
-                )
-                ->execute();
+                    ->where('BOOK_TITLE LIKE :judul:')
+                    ->bind(
+                        [
+                            'judul' => $searchKey,
+                        ]
+                    )
+                    ->execute();
         }
         $this->view->results = $results;
     }
