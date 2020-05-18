@@ -151,7 +151,7 @@ class UserController extends ControllerBase
         {
             $this->response->redirect('/user/login');
         }
-        
+        $this->view->results = $results;
     }
 
 }
