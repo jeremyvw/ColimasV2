@@ -138,7 +138,7 @@ class UserController extends ControllerBase
                 )
                 ->execute();
         }
-        $this->view->result = $results;
+        $this->view->results = $results;
     }
 
 }
