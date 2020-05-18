@@ -102,20 +102,12 @@ class SecurityPlugin extends Injectable
             $acl->addRole($role);
         }
 
-        //Yang gak boleh diakses admin
+        // Can't be accessed by student
         $privateResources = [
-            'supirtruk'             => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus', 'search'],
-            'pabrik'                => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus'],
-            'pemiliktruk'           => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus'],
-            'user'                  => ['index', 'tambah', 'hapus','master','register'],
-            'alatberat'             => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus'],
-            'cucian'                => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus'],
-            'user'                  => ['index', 'tambah', 'proses', 'hapus', 'master'],
-            'pemakaianalatberat'    => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus', 'search'],
-            'transaksi'             => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus', 'search'],
-            'pengiriman'            => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus', 'search'],
-            'keuangan'              => ['index'],
-            'mahsun'                => ['index','laporan'],
+            'borrow'    => ['manage', 'detail', 'update']
+            // 'user'      => 
+            // 'upgrade'   
+        
         ];
         foreach ($privateResources as $resource => $actions) {
             $acl->addComponent(new Component($resource), $actions);
@@ -123,23 +115,21 @@ class SecurityPlugin extends Injectable
 
         //Public area resources
         $publicResources = [
-            'index'                 => ['index'],
-            'error'                 => ['notFound', 'serverError', 'unauthorized'],
-            'session'               => ['index', 'login', 'logout'],
+            'index'                 => ['index', 'login'],
+            'error'                 => ['notFound', 'serverError'],
+            'session'               => ['index', 'login', 'logout', 'register'],
         ];
 
         foreach ($publicResources as $resource => $actions) {
             $acl->addComponent(new Component($resource), $actions);
         }
         
-        // yang boleh diakses admin
-        $adminResources = [
-            'pemakaianalatberat'    => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus'],
+        // Can be accessed by student
+        $studentResources = [
             'user'                  => ['admin'],
-            'transaksi'             => ['index', 'tambah', 'proses', 'edit', 'update', 'hapus'],
 
         ];
-        foreach ($adminResources as $resource => $actions) {
+        foreach ($studentResources as $resource => $actions) {
             $acl->addComponent(new Component($resource), $actions);
         }
 
