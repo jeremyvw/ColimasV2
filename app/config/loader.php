@@ -12,6 +12,7 @@ $loader->registerNamespaces([
     'App\Controllers' => $config->application->controllersDir,
     'App\Models' => $config->application->modelsDir,
     'App\Validation' => $config->application->validationDir,
+    'App\Plugins' => $config->application->pluginsDir,
 ]);
 
 $loader->register();
