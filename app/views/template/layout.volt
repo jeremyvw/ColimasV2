@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 {{ assets.outputCss() }}
+{{ assets.outputJs()  }}
 
 <head>
     <meta charset="UTF-8">

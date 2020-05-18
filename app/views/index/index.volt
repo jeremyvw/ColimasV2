@@ -53,10 +53,13 @@
                 <a href="/book/manage" class="btn btn-hover">View Collections</a>
             </div> -->
   
-<body>
+<div class="home">
 <!------ Slider_bg ------------>
 <div class="slider_bg">
     <div class="wrap">
+        <!-- <div class="page-header" >
+            Welcome To Our Library
+        </div> -->
         <!------ Slider------------>
               <div class="slider">
                   <div class="slider-wrapper theme-default">
@@ -73,18 +76,18 @@
             <div class="grids_1_of_3">
                     <div class="grid_1_of_3 images_1_of_3">
                           <img src="img/icon1.jpg">
-                          <h3>Lorem Ipsum is simply</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore pariatur.</p>
+                          <h3>Satisfaction</h3>
+                          <p>People who read for 30 minutes a week reported feeling 20% more satisfied with their lives in the latest Quick Reads study.</p>
                     </div>
                     <div class="grid_1_of_3 images_1_of_3">
                           <img src="img/icon2.jpg">
-                          <h3>Lorem Ipsum is simply</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore pariatur.</p>
+                          <h3>Reading Benefit</h3>
+                          <p>Reading plays a significant role in our lives. It's how we learn, express ourselves, and communicate with others.</p>
                     </div>
                     <div class="grid_1_of_3 images_1_of_3">
                           <img src="img/icon3.jpg">
-                          <h3>Lorem Ipsum is simply</h3>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore pariatur.</p>
+                          <h3>Reading Habit</h3>
+                          <p>88% of financially successful people read at least 30 mins per day. In fact, the average number of books read by CEO is 60 books per year, or five books each month</p>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -97,8 +100,8 @@
     <div class="wrap">
     <div class="main">
         <div class="content">
-            <h2>what our customer says</h2>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing</h3>
+            <h2>what our student says</h2>
+            <h3>Reza Adipatria Maranatha, Informatics ITS 2017</h3>
             <p><a href="#"><img src="img/pic1.jpg"></a> Cadipisicing elit,Nam ornare vulputate risus,id volutpat elit porttitor non.In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. PellentesqueNam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas Pellentesque habitant morbi tristique senectus et netus et malesuada fames. sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Nam ornare vulputate risus,id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales.Nam ornare vulputate risus, id volutpat elit porttitor non.</p>
             <div class="clear"></div>
         </div>
@@ -184,13 +187,13 @@
         <div class="wrap">
             <div class="footer">
                 <div class="copy">
-                    <p class="w3-link">© 2013 Public-Library. All Rights Reserved | Design by&nbsp; <a href="http://w3layouts.com/"> W3Layouts</a></p>
+                    <p class="w3-link">© 2020 Colimas. All Rights Reserved</p>
                 </div>
                 <div class="clear"></div>	
             </div>
         </div>
     </div>
 </div>
-</body>
+</div>
 
 {% endblock %}
