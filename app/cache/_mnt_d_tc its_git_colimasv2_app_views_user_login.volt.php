@@ -18,9 +18,9 @@
                         <div class="row">
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <h3 class="login-heading mb-4">Welcome back!</h3>
-                                <form method="POST" action="{{ url('/session/login') }}">
+                                <form method="POST" action="<?= $this->url->get('/session/login') ?>">
                                     <div>
-                                        {{ flashSession.output() }}
+                                        <?= $this->flashSession->output() ?>
                                     </div>
                                     <div class="form-label-group">
                                         <input type="email" name="email" class="form-control"
@@ -35,7 +35,7 @@
                                         type="submit">Login</button>
                                     <div class="text-center">
                                         <span class="small">Don't have an account?</span>
-                                        <a class="small" href="{{url('/user/register')}}">Register</a></div>
+                                        <a class="small" href="<?= $this->url->get('/user/register') ?>">Register</a></div>
                                 </form>
                             </div>
                         </div>
