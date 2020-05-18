@@ -83,4 +83,21 @@ class BorrowController extends ControllerBase
 
         }
     }
+
+    public function updateAction($id)
+    {
+        $borrow = Borrows::findFirstByBORROW_ID($id);
+
+        $status = $this->request->getPost('status');
+
+        $borrow->BORROW_STATUS = $status;
+
+        $success = $borrow->save();
+        if($success)
+        {
+            $this->flashSession->success('Request has been successfully modified.');
+        }
+        $this->response->redirect('/borrow/manage');
+
+    }
 }
