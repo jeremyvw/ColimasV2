@@ -14,6 +14,7 @@ use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Url as UrlResolver;
 use Phalcon\Flash\Session as FlashSession;
 use Phalcon\Session\Bag;
+use App\Plugins\SecurityPlugin;
 
 /**
  * Shared configuration service
@@ -133,6 +134,8 @@ $di->set('flashSession', function () {
 // });
 
 
+
+
 /**
  * Start the session the first time some component request the session service
  */
@@ -145,6 +148,10 @@ $di->setShared('session', function () {
     $session->start();
 
     return $session;
+});
+
+$di->setShared('sessionBag', function(){
+    return new Bag('bag');
 });
 
 $di->setShared('dispatcher', function() {
@@ -166,6 +173,11 @@ $di->setShared('dispatcher', function() {
                 return false;
             }
         }
+    );
+
+    $eventsManager->attach(
+        'dispatch:beforeExecuteRoute',
+        new SecurityPlugin()
     );
 
     $dispatcher = new Dispatcher();
