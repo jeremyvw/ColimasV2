@@ -12,12 +12,11 @@ class BookController extends ControllerBase
 {
     public function indexAction()
     {
-
+        $this->view->books = Books::find();
     }
 
     public function manageAction()
     {
-        $this->view->books = Books::find();
 
     }
 
