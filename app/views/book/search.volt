@@ -5,8 +5,11 @@
         <h2>Collections</h2>
     </div>
     <div class="page-header">
-        <a href="{{url('/book/manage')}}" class="btn btn-secondary">Back</a>
+        <form class="form-inline">
+            <a href="{{url('/book/manage')}}" class="btn btn-secondary">Back</a>
+        </form>
     </div>
+    <br>
     <div class="page-header" style="text-align: center;">
         <form class="form-inline" method="POST" action="{{url('book/search')}}">
             <input class="form-control mr-sm-2" type="search" placeholder="Search Books" aria-label="Search"
