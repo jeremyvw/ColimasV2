@@ -99,7 +99,7 @@ class BorrowController extends ControllerBase
         {
             $this->flashSession->success('Request has been successfully modified.');
         }
-        $this->response->redirect('/borrow/manage');
+        $this->response->redirect('/borrow');
 
     }
 }
