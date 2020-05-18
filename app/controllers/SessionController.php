@@ -105,7 +105,7 @@ class SessionController extends ControllerBase
                 $user->USER_BIRTHDATE = $birthdate;
                 $user->USER_GENDER = $gender;
                 $user->USER_CATEGORY = $category;
-                $user->USER_PHOTO = $path;
+                // $user->USER_PHOTO = $path;
 
                 $success = $user->save();
 

@@ -184,7 +184,7 @@ class BookController extends ControllerBase
     {
         $searchKey = $this->request->getPost('searchKey');
         $searchBy = $this->request->getPost('searchBy');
-        $searchKey = '%'.$searcKey.'%';
+        $searchKey = '%'.$searchKey.'%';
         if($searchBy == 'Author'){
             $searchKey = '%'.$searchKey.'%';
             $query = $this->modelsManager->createQuery('SELECT * FROM Books, Authors
