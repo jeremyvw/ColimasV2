@@ -32,8 +32,9 @@
                 <td>{{upgrade.UPGRADE_RESPONDEDTIME}}</td>
                 {% if upgrade.UPGRADE_STATUS == 1 %}
                 <td>Accepted</td>
-                {% endif %}
+                {% else %}
                 <td>Pending</td>
+                {% endif %}
                 {% if session.get('auth') %}
                 {% if session.get('auth')['category'] == 0 %}
                 <td>

@@ -48,64 +48,21 @@ class UpgradeController extends ControllerBase
         if(!$this->session->has('auth')){
             $this->response->redirect('/auth/login');
         }
-        else {
-            $upg = Upgrade::findFirstByUPGRADE_ID($id);
-            $temp = $upg->USER_ID;
-            $upg->UPGRADE_REQUESTDATE = $upg->UPGRADE_REQUESTDATE;
-            $upg->UPGRADE_RESPONDEDTIME = date('Y-m-d h:i:sa');
-            $upg->UPGRADE_STATUS = 1;
-            $upg->update();
+        $upgrade = Upgrade::findFirstByUPGRADE_ID($id);
+        // $upgrade->UPGRADE_ID = $upgrade->UPGRADE_ID;
+        $upgrade->UPGRADE_RESPONDEDTIME = date('Y-m-d h:i:sa');
+        $upgrade->UPGRADE_STATUS = 1;
+        $upgrade->save();
 
-            // $user = Users::findFirstByUSER_ID($this->session->get('auth')['id']);
+        $user = Users::findFirstByUSER_ID($upgrade->USER_ID);
+        $user->USER_CATEGORY = $user->USER_CATEGORY + 1;
+        $success = $user->update();
 
-
-            // $username = $this->request->getPost('username');
-            // $name = $this->request->getPost('name');
-            // $birthdate = $this->request->getPost('birthdate');
-            // $gender = $this->request->getPost('gender');
-            
-            // if($this->request->hasFiles())
-            // {
-            //     unlink($user->USER_PHOTO);
-            //     $image = $this->request->getUploadedFiles()[0];
-            //     $path = 'img/profiles/'.$image->getName();
-            //     $user->USER_PHOTO = $path;
-            //     $image->moveTo($path);
-            // }
-            // else 
-            // {
-            //     $user->USER_PHOTO = 'img/profiles/basicpict.png';
-            // }
-    
-            // $user->USER_USERNAME = $username;
-            // $user->USER_PASSWORD = $user->USER_PASSWORD;
-            // $user->USER_EMAIL = $user->USER_EMAIL;
-            // $user->USER_NAME = $name;
-            // $user->USER_BIRTHDATE = $birthdate;
-            // $user->USER_GENDER = $gender;
-            // $user->USER_CATEGORY = $user->USER_CATEGORY;
-            // // $user->USER_PHOTO = $path;
-    
-            // $success = $user->save();
-    
-            // $user = Users::findFirstByUSER_ID($temp);
-            // $user->USER_USERNAME = $user->USER_USERNAME;
-            // $user->USER_PASSWORD = $user->USER_PASSWORD;
-            // $user->USER_EMAIL = $user->USER_EMAIL;
-            // $user->USER_NAME = $user->USER_NAME;
-            // $user->USER_BIRTHDATE = $user->USER_BIRTHDATE;
-            // $user->USER_GENDER = $user->USER_GENDER;
-            // $user->USER_CATEGORY = $user->USER_CATEGORY + 1;
-            // $user->USER_PHOTO = $user->USER_PHOTO;
-            // $success = $user->save();
-
-            if($success)
-            {
-                $this->flashSession->success('Input data berhasil');
-            }
-            // passing a message to the view
-            $this->response->redirect('/upgrade');
+        if($success)
+        {
+            $this->flashSession->success('Input data berhasil');
         }
+        // passing a message to the view
+        $this->response->redirect('/upgrade');
     }
 }
-

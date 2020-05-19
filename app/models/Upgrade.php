@@ -29,12 +29,12 @@ class Upgrade extends Model
         // Untuk mengeset nama tabel, default : nama class
         $this->setSource('upgrades');
 
-        $this->skipAttributesOnUpdate(
-            [
-                'UPGRADE_ID',
-            ]
-        );
-        
+        // $this->skipAttributesOnUpdate(
+        //     [
+        //         'UPGRADE_ID',
+        //     ]
+        // );
+
         $this->belongsTo(
             'USER_ID',
             Users::class,

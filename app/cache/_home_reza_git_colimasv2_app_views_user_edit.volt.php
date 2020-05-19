@@ -69,57 +69,53 @@
 </head>
 
 
+<title>Daftar Buku</title>
 
 
 <body>
     <div class="cont">
         
 <div class="container">
-    <div class="page-header" style="text-align: center;">
-        <h2>Upgraded Requests</h2>
+    <div class="card mt-5">
+        <div class="card-header text-center" style="background-color:#343A40; color: #FFFFFF;">
+            <strong>Edit Profil</strong>
+        </div>
+        <div class="card-header">
+            <a href="<?= $this->url->get('/user/profile') ?>" class="btn btn-secondary">Kembali</a>
+        </div>
+        <div class="card-body">
+
+            <form autocomplete="off" method="post" action="<?= $this->url->get('user/update/') ?>" enctype="multipart/form-data">
+                <div style="padding-bottom: 20px;">
+                    <label for="coverimage">Upload Profile Picture</label>
+                    <input type="file" class="form-control-file" name="profile">
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" autocomplete="off" name="username" class="form-control" placeholder="Username"
+                        value="<?= $user->USER_USERNAME ?>">
+                </div>
+                <div class="form-label-group">
+                    <input type="text" name="name" class="form-control" placeholder="Fullname"
+                        value="<?= $user->USER_NAME ?>">
+                </div>
+                <div class="form-label-group">
+                    <input type="date" class="form-control" name="birthdate" value="<?= $user->USER_BIRTHDATE ?>">
+                </div>
+                <div class="form-label-group">
+                    <span>Jenis Kelamin</span><br>
+                    <input type="radio" id="male" name="gender" value="Male" style="display: inline;" required>
+                    <label for="laki" style="margin: 0;padding: 5pt 20pt 0 5pt;">Laki-Laki</label>
+                    <!-- padding-right: 10pt;padding-bottom: 0; -->
+                    <input type="radio" id="female" name="gender" value="Female" required>
+                    <label for="perempuan" style="margin: 0;padding: 5pt 25pt 0 5pt;">Perempuan</label>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Simpan">
+                </div>
+            </form>
+        </div>
     </div>
-    <br>
-    <div>
-        <?= $this->flashSession->output() ?>
-    </div>
-    <table class="table table-hover">
-        <thead>
-            <tr class="text-center">
-                <th>ID</th>
-                <th>Username</th>
-                <th>Upgrade Date</th>
-                <th>Upgrade Accept Date</th>
-                <th>Upgrade Status</th>
-                <?php if ($this->session->get('auth')) { ?>
-                <?php if ($this->session->get('auth')['category'] == 0) { ?>
-                <th>Action</th>
-                <?php } ?>
-                <?php } ?>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($upgrades as $upgrade) { ?>
-            <tr class="text-center">
-                <td><?= $upgrade->UPGRADE_ID ?></td>
-                <td><?= $upgrade->users->USER_NAME ?></td>
-                <td><?= $upgrade->UPGRADE_REQUESTDATE ?></td>
-                <td><?= $upgrade->UPGRADE_RESPONDEDTIME ?></td>
-                <?php if ($upgrade->UPGRADE_STATUS == 1) { ?>
-                <td>Accepted</td>
-                <?php } else { ?>
-                <td>Pending</td>
-                <?php } ?>
-                <?php if ($this->session->get('auth')) { ?>
-                <?php if ($this->session->get('auth')['category'] == 0) { ?>
-                <td>
-                    <a href="<?= $this->url->get('/upgrade/update/' . $upgrade->UPGRADE_ID) ?>" class="btn btn-info">Accept</a>
-                </td>
-                <?php } ?>
-                <?php } ?>
-            </tr>
-            <?php } ?>
-        </tbody>
-    </table>
 </div>
 
     </div>

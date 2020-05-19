@@ -73,10 +73,6 @@ class UserController extends ControllerBase
             $user->USER_PHOTO = $path;
             $image->moveTo($path);
         }
-        else 
-        {
-            $user->USER_PHOTO = 'img/profiles/basicpict.png';
-        }
 
         $user->USER_USERNAME = $username;
         $user->USER_PASSWORD = $user->USER_PASSWORD;
