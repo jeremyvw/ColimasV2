@@ -14,7 +14,16 @@ class UpgradeController extends ControllerBase
         if(!$this->session->has('auth')){
             $this->response->redirect('/user/login');
         }
-        $this->view->upgrades = Upgrade::find();
+
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $this->view->upgrades = Upgrade::find();        
+        }
+        else{
+            $this->view->upgrades = Upgrade::findByUSER_ID($temp);
+        }
+
         // if(!$this->session->has('auth')){
         //     $this->response->redirect('/auth/login');
         // }
@@ -45,24 +54,33 @@ class UpgradeController extends ControllerBase
 
     public function updateAction($id)
     {
+
         if(!$this->session->has('auth')){
-            $this->response->redirect('/auth/login');
+            $this->response->redirect('/user/login');
         }
-        $upgrade = Upgrade::findFirstByUPGRADE_ID($id);
+
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $upgrade = Upgrade::findFirstByUPGRADE_ID($id);
         // $upgrade->UPGRADE_ID = $upgrade->UPGRADE_ID;
-        $upgrade->UPGRADE_RESPONDEDTIME = date('Y-m-d h:i:sa');
-        $upgrade->UPGRADE_STATUS = 1;
-        $upgrade->save();
+            $upgrade->UPGRADE_RESPONDEDTIME = date('Y-m-d h:i:sa');
+            $upgrade->UPGRADE_STATUS = 1;
+            $upgrade->save();
 
-        $user = Users::findFirstByUSER_ID($upgrade->USER_ID);
-        $user->USER_CATEGORY = $user->USER_CATEGORY + 1;
-        $success = $user->update();
+            $user = Users::findFirstByUSER_ID($upgrade->USER_ID);
+            $user->USER_CATEGORY = $user->USER_CATEGORY + 1;
+            $success = $user->update();
 
-        if($success)
-        {
-            $this->flashSession->success('Input data berhasil');
+            if($success)
+            {
+                $this->flashSession->success('Input data berhasil');
+            }
+            // passing a message to the view
+            $this->response->redirect('/upgrade');        
         }
-        // passing a message to the view
-        $this->response->redirect('/upgrade');
+        else{
+            $this->response->redirect('/');
+        }
     }
 }

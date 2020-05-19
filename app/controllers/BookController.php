@@ -46,18 +46,6 @@ class BookController extends ControllerBase
             $this->view->authors = Authors::find();
             $this->view->categories = Categories::find();
 
-        // $validation = new BookValidation();
-        // $messages = $validation->validate($_POST);
-        // if(count($messages))
-        // {
-        //     foreach ($message as $messages)
-        //     {
-        //         $this->flashSession->error($message->getMessage());
-        //     }
-        //     $this->response->redirect('/book/create');
-        // }
-        // else
-        // {
             $title = $this->request->getPost('title');
             $year = $this->request->getPost('year');
             $shelf = $this->request->getPost('shelf');
@@ -65,14 +53,6 @@ class BookController extends ControllerBase
             $pagecount = $this->request->getPost('pagecount');
             $status = $this->request->getPost('status');
             $count = $this->request->getPost('count');
-
-            // $book->BOOK_TITLE = $this->request->getPost('title');
-            // $book->BOOK_YEAR = $this->request->getPost('year');
-            // $book->BOOK_SHELF = $this->request->getPost('shelf');
-            // $book->BOOK_DESCRIPTION = $this->request->getPost('description');
-            // $book->BOOK_PAGECOUNT = $this->request->getPost('pagecount');
-            // $book->BOOK_STATUS = $this->request->getPost('status');
-            // $book->BOOK_COUNT = $this->request->getPost('count');
             
             if($this->request->hasFiles())
             {
@@ -85,9 +65,6 @@ class BookController extends ControllerBase
             $authorid = $this->request->getPost('authorid');
             $categoryid = $this->request->getPost('categoryid');
 
-            // $book->AUTHOR_ID = $this->request->getPost('authorid');
-            // $book->CATEGORY_ID = $this->request->getPost('categoryid');
-    
             $checkBookTitle = Books::findFirst("BOOK_TITLE = '$title'");
 
             if($checkBookTitle)
@@ -125,75 +102,108 @@ class BookController extends ControllerBase
     public function editAction($id)
     {
         // $id = $this->dispatcher->getParam("id");
-        $book = Books::findFirstByBOOK_ID($id);
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
+        }
+
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $book = Books::findFirstByBOOK_ID($id);
         
-        $this->view->book = $book;
-        $this->view->authors = Authors::find();
-        $this->view->categories = Categories::find();
+            $this->view->book = $book;
+            $this->view->authors = Authors::find();
+            $this->view->categories = Categories::find();
+        }
+        else{
+            $this->response->redirect('/');
+        }
+        
     }
 
     public function updateAction($id)
     {
-        $book = Books::findFirstByBOOK_ID($id);
-
-        $this->view->authors = Authors::find();
-        $this->view->categories = Categories::find();
-
-        $title = $this->request->getPost('title');
-        $shelf = $this->request->getPost('shelf');
-        $description = $this->request->getPost('description');
-        $pagecount = $this->request->getPost('pagecount');
-        $status = $this->request->getPost('status');
-        $count = $this->request->getPost('count');
-        
-        if($this->request->hasFiles())
-        {
-            unlink($book->BOOK_COVERIMAGE);
-            $image = $this->request->getUploadedFiles()[0];
-            $path = 'img/books/'.$image->getName();
-            $book->BOOK_COVERIMAGE = $path;
-            $image->moveTo($path);
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
         }
 
-        $authorid = $this->request->getPost('authorid');
-        $categoryid = $this->request->getPost('categoryid');
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $book = Books::findFirstByBOOK_ID($id);
 
-        // $book = Books::findFirst("id = '$BOOK_ID'");
-        $book->BOOK_TITLE = $title;
-        $book->BOOK_SHELF = $shelf;
-        $book->BOOK_DESCRIPTION = $description;
-        $book->BOOK_PAGECOUNT = $pagecount;
-        $book->BOOK_STATUS = $status;
-        $book->BOOK_COUNT = $count;
+            $this->view->authors = Authors::find();
+            $this->view->categories = Categories::find();
 
-        $book->AUTHOR_ID = $authorid;
-        $book->CATEGORY_ID = $categoryid;
-
-        if ($book->save() === false)
-        {
-            foreach ($book->getMessages() as $message)
+            $title = $this->request->getPost('title');
+            $shelf = $this->request->getPost('shelf');
+            $description = $this->request->getPost('description');
+            $pagecount = $this->request->getPost('pagecount');
+            $status = $this->request->getPost('status');
+            $count = $this->request->getPost('count');
+            
+            if($this->request->hasFiles())
             {
-                echo $message, "\n";
+                unlink($book->BOOK_COVERIMAGE);
+                $image = $this->request->getUploadedFiles()[0];
+                $path = 'img/books/'.$image->getName();
+                $book->BOOK_COVERIMAGE = $path;
+                $image->moveTo($path);
+            }
+
+            $authorid = $this->request->getPost('authorid');
+            $categoryid = $this->request->getPost('categoryid');
+
+            // $book = Books::findFirst("id = '$BOOK_ID'");
+            $book->BOOK_TITLE = $title;
+            $book->BOOK_SHELF = $shelf;
+            $book->BOOK_DESCRIPTION = $description;
+            $book->BOOK_PAGECOUNT = $pagecount;
+            $book->BOOK_STATUS = $status;
+            $book->BOOK_COUNT = $count;
+
+            $book->AUTHOR_ID = $authorid;
+            $book->CATEGORY_ID = $categoryid;
+
+            if ($book->save() === false)
+            {
+                foreach ($book->getMessages() as $message)
+                {
+                    echo $message, "\n";
+                }
+            }
+            else
+            {
+                $this->response->redirect('/book/manage');
             }
         }
-        else
-        {
-            $this->response->redirect('/book/manage');
+        else{
+            $this->response->redirect('/');
         }
-
     }
 
     public function destroyAction($id)
     {
-        $book = Books::findFirstByBOOK_ID($id);
-
-        $success = $book->delete();
-        
-        if($success)
-        {
-            $this->flashSession->success('Book has been successfully removed from collection.');
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
         }
-        $this->response->redirect('/book/manage');
+
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $book = Books::findFirstByBOOK_ID($id);
+
+            $success = $book->delete();
+            
+            if($success)
+            {
+                $this->flashSession->success('Book has been successfully removed from collection.');
+            }
+            $this->response->redirect('/book/manage');
+        }
+        else{
+            $this->response->redirect('/');
+        }
     }
 
     public function detailAction($id)

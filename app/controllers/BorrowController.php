@@ -88,31 +88,47 @@ class BorrowController extends ControllerBase
 
     public function updateAction($id)
     {
-        $borrow = Borrows::findFirstByBORROW_ID($id);
-
-        $status = $this->request->getPost('status');
-
-        $borrow->BORROW_STATUS = $status;
-
-        $success = $borrow->save();
-        if($success)
-        {
-            $this->flashSession->success('Request has been successfully modified.');
+        if(!$this->session->has('auth')){
+            $this->response->redirect('/user/login');
         }
-        $this->response->redirect('/borrow');
+
+        $cat = $this->session->get('auth')['category']; 
+        $temp = $this->session->get('auth')['id'];
+        if($cat == 0){
+            $borrow = Borrows::findFirstByBORROW_ID($id);
+
+            $status = $this->request->getPost('status');
+
+            $borrow->BORROW_STATUS = $status;
+
+            $success = $borrow->save();
+            if($success)
+            {
+                $this->flashSession->success('Request has been successfully modified.');
+            }
+            $this->response->redirect('/borrow');
+        }
+        else{
+            $this->response->redirect('/');
+        }
+        
 
     }
 
     public function filterAction()
     {
-        
-        
         $searchKey = $this->request->getPost('searchKey');
         $searchBy = $this->request->getPost('searchBy');
-        if($searchBy == 'title'){
-            $searchKey = '%'.$searchKey.'%'
-            // $query = $this->modelManager->createQuery('SELECT * FROM Borrows
-            // WHERE ')
-        }
+        $searchKey = strftime($searchKey);
+        // if($searchBy == 'Book Title'){
+            $filtered = Borrows::query()
+            ->where('BORROW_STARTDATE = :id:')
+            ->bind(
+                [
+                    'id' => $searchKey,
+                ]
+            )
+            ->execute();
+        $this->view->filters = $filtered;
     }
 }
