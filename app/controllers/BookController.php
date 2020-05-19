@@ -90,7 +90,7 @@ class BookController extends ControllerBase
                 {
                     $this->flashSession->success('Book has been successfully added into collection.');
                 }
-                $this->response->redirect('/book/manage');
+                $this->response->redirect('/book');
             
             }
         }
@@ -174,7 +174,7 @@ class BookController extends ControllerBase
             }
             else
             {
-                $this->response->redirect('/book/manage');
+                $this->response->redirect('/book');
             }
         }
         else{
@@ -199,7 +199,7 @@ class BookController extends ControllerBase
             {
                 $this->flashSession->success('Book has been successfully removed from collection.');
             }
-            $this->response->redirect('/book/manage');
+            $this->response->redirect('/book');
         }
         else{
             $this->response->redirect('/');
