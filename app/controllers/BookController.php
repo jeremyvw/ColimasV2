@@ -196,6 +196,15 @@ class BookController extends ControllerBase
         $this->response->redirect('/book/manage');
     }
 
+    public function detailAction()
+    {
+        $book = Books::findFirstByBOOK_ID($id);
+        
+        $this->view->book = $book;
+        $this->view->authors = Authors::find();
+        $this->view->categories = Categories::find();
+    }
+
     public function searchAction()
     {
         $searchKey = $this->request->getPost('searchKey');

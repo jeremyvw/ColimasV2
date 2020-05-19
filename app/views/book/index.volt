@@ -54,23 +54,29 @@
                 <td>{{book.authors.AUTHOR_NAME}}</td>
                 <td>{{book.categories.CATEGORY_NAME}}</td>
                 {% if session.get('auth') %}
-                {% if session.get('auth')['category'] == 0 %}
-                <td>
-                    <a href="{{url('/book/edit/'~book.BOOK_ID)}}" class="btn btn-primary">Edit</a>
-                    <a href="{{url('/book/destroy/'~book.BOOK_ID)}}" class="btn btn-danger">Delete</a>
-                </td>
-                {% elseif session.get('auth') %}
-                {% if book.BOOK_COUNT == 0 %}
-                <td>
-                    <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm disabled">Pinjam</a>
-                </td>
-                {% else %}
-                <td>
-                    <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm">Pinjam</a>
-                </td>
-                {% endif %}
-                {% else %}
-                {% endif %}
+                    {% if session.get('auth')['category'] == 0 %}
+                    <td>
+                        <a href="{{url('/book/edit/'~book.BOOK_ID)}}" class="btn btn-primary">Edit</a>
+                        <a href="{{url('/book/destroy/'~book.BOOK_ID)}}" class="btn btn-danger">Delete</a>
+                    </td>
+                    {% elseif session.get('auth') %}
+                        {% if book.BOOK_COUNT == 0 %}
+                        <td>
+                            <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm disabled">Pinjam</a>
+                        </td>
+                        <td>
+                            <a href="{{url('book/detail/'~book.BOOK_ID)}}" class="btn btn-success btn-sm">Detail</a>
+                        </td>
+                        {% else %}
+                        <td>
+                            <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm">Pinjam</a>
+                        </td>
+                        <td>
+                            <a href="{{url('book/detail/'~book.BOOK_ID)}}" class="btn btn-success btn-sm">Detail</a>
+                        </td>
+                        {% endif %}
+                    {% else %}
+                    {% endif %}
                 {% endif %}
             </tr>
             {% endfor %}
