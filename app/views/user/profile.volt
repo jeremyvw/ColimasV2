@@ -124,7 +124,7 @@
         </div>
         <div class="col-md-2">
             <a href="{{url('/user/edit') }}" class="profile-edit-btn">Edit Profile</a><br>
-
+            <a href="{{url('/upgrade/request') }}" class="profile-edit-btn">Upgrade Member</a><br>
         </div>
     </div>
 </div>

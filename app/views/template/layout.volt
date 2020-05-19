@@ -26,6 +26,9 @@
                 <li class="nav-item">
                     <a href="{{url('/borrow')}}" class="nav-link">Requests</a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{url('/upgrade')}}" class="nav-link">Upgrades</a>
+                </li>
                 {% endif %}
                 {% endif %}
             </ul>
@@ -38,10 +41,14 @@
                     <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown"><strong>Welcome,
                             {{session.get('auth')['name']}}</strong></a>
                     <div class="dropdown-menu dropdown-menu-right">
+                        {% if session.get('auth') %}
+                        {% if session.get('auth')['category'] > 0 %}
                         <a href="{{url('/user/profile')}}" class="dropdown-item">Profile</a>
                         <a href="{{url('/borrow')}}" class="dropdown-item">Requests</a>
-                        <a href="{{url('/upgrade/request')}}" class="dropdown-item">Upgrade</a>
+                        <a href="{{url('/upgrade/')}}" class="dropdown-item">Upgrade</a>
                         <div class="dropdown-divider"></div>
+                        {% endif %}
+                        {% endif %}
                         <a href="{{url('/session/logout')}}" class="dropdown-item">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>

@@ -26,6 +26,9 @@
                 <li class="nav-item">
                     <a href="<?= $this->url->get('/borrow') ?>" class="nav-link">Requests</a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?= $this->url->get('/upgrade') ?>" class="nav-link">Upgrades</a>
+                </li>
                 <?php } ?>
                 <?php } ?>
             </ul>
@@ -38,10 +41,14 @@
                     <a href="#" class="nav-link active dropdown-toggle" data-toggle="dropdown"><strong>Welcome,
                             <?= $this->session->get('auth')['name'] ?></strong></a>
                     <div class="dropdown-menu dropdown-menu-right">
+                        <?php if ($this->session->get('auth')) { ?>
+                        <?php if ($this->session->get('auth')['category'] > 0) { ?>
                         <a href="<?= $this->url->get('/user/profile') ?>" class="dropdown-item">Profile</a>
                         <a href="<?= $this->url->get('/borrow') ?>" class="dropdown-item">Requests</a>
-                        <a href="<?= $this->url->get('/upgrade/request') ?>" class="dropdown-item">Upgrade</a>
+                        <a href="<?= $this->url->get('/upgrade/') ?>" class="dropdown-item">Upgrade</a>
                         <div class="dropdown-divider"></div>
+                        <?php } ?>
+                        <?php } ?>
                         <a href="<?= $this->url->get('/session/logout') ?>" class="dropdown-item">
                             <i class="fas fa-sign-out-alt"></i>
                             <span>Logout</span>
