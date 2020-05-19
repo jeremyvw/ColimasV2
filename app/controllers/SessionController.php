@@ -42,7 +42,7 @@ class SessionController extends ControllerBase
                         [
                             'id' => $user->USER_ID,
                             'email' => $user->USER_EMAIL,
-                            'name' => $user->USER_NAME,
+                            'name' => $user->USER_USERNAME,
                             'password' => $user->USER_PASSWORD,
                             'category' => $user->USER_CATEGORY,
                         ]

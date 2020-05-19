@@ -83,7 +83,7 @@
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="row" style="padding-bottom: 5pt;">
                         <div class="col-md-4">
-                            <label>Username</label>
+                            <label>Name</label>
                         </div>
                         <div class="col-md-4">
                             <p>{{ user.USER_NAME }}</p>

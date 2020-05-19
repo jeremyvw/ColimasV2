@@ -76,17 +76,13 @@
 </head>
 
 
-<title>Profile</title>
+<title>Book Detail</title>
 
 
 <body>
     <div class="cont">
         
 <style>
-    body {
-        background: -webkit-linear-gradient(left, #3931af, #00c6ff);
-    }
-
     .emp-profile {
         padding: 3% 0.5%;
         margin-top: 3%;
@@ -141,69 +137,111 @@
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
-                <?php if ($user->USER_PHOTO) { ?>
-                <img src="<?= $this->url->get($user->USER_PHOTO) ?>" />
-                <?php } else { ?>
-                <img src="/img/profiles/basicpict.png" />
-                <?php } ?>
+                <img src="<?= $book->BOOK_COVERIMAGE ?>" width="" height="150" alt="225">
             </div>
         </div>
         <div class="col-md-5">
             <div class="profile-head">
                 <h5>
-                    <?= $user->USER_USERNAME ?>
+                    <?= $book->BOOK_TITLE ?>
                 </h5><br>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                            aria-controls="home" aria-selected="true">About</a>
+                            aria-controls="home" aria-selected="true">Detail</a>
                     </li>
                 </ul>
                 <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="row" style="padding-bottom: 5pt;">
+                    <!-- <div class="row" style="padding-bottom: 5pt;">
                         <div class="col-md-4">
-                            <label>Name</label>
+                            <label>Username</label>
                         </div>
                         <div class="col-md-4">
                             <p><?= $user->USER_NAME ?></p>
                         </div>
+                    </div> -->
+                    <div class="row " style="padding-bottom: 5pt;">
+                        <div class="col-md-4">
+                            <label>Year</label>
+                        </div>
+                        <div class="col-md-4">
+                            <p><?= $book->BOOK_YEAR ?></p>
+                        </div>
                     </div>
                     <div class="row " style="padding-bottom: 5pt;">
                         <div class="col-md-4">
-                            <label>Email</label>
+                            <label>Shelf</label>
                         </div>
                         <div class="col-md-4">
-                            <p><?= $user->USER_EMAIL ?></p>
-                        </div>
-                    </div>
-                    <div class="row " style="padding-bottom: 5pt;">
-                        <div class="col-md-4">
-                            <label>Gender</label>
-                        </div>
-                        <div class="col-md-4">
-                            <p><?= $user->USER_GENDER ?></p>
+                            <p><?= $book->BOOK_SHELF ?></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Member</label>
+                            <label>Description</label>
                         </div>
                         <div class="col-md-4">
-                            <?php if ($user->USER_CATEGORY == 1) { ?>
-                            <p>Bronze</p>
-                            <?php } elseif ($user->USER_CATEGORY == 2) { ?>
-                            <p>Silver</p>
-                            <?php } elseif ($user->USER_CATEGORY == 3) { ?>
-                            <p>Gold</p>
-                            <?php } ?>
+                            <p>
+                                <?= $book->BOOK_DESCRIPTION ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Total Pages</label>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <?= $book->BOOK_PAGECOUNT ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Status</label>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <?= $book->BOOK_STATUS ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Count</label>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <?= $book->BOOK_COUNT ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Author</label>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <?= $book->authors->AUTHOR_NAME ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Category</label>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <?= $book->categories->CATEGORY_NAME ?>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-2">
-            <a href="<?= $this->url->get('/user/edit') ?>" class="profile-edit-btn">Edit Profile</a><br>
-            <a href="<?= $this->url->get('/upgrade/request') ?>" class="profile-edit-btn">Upgrade Member</a><br>
+            <a href="<?= $this->url->get('/borrow/add/' . $book->BOOK_ID) ?>" class="profile-edit-btn">Pinjam</a><br>
+
         </div>
     </div>
 </div>
