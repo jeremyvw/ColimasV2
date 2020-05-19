@@ -1,6 +1,6 @@
 {% extends 'template/layout.volt' %}
 {% block content %}
-<div class="container-fluid">
+<div class="container">
     <div class="page-header" style="text-align: center;">
         <h2>Upgraded Requests</h2>
     </div>
@@ -8,33 +8,39 @@
     <div>
         {{ flashSession.output() }}
     </div>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <tr class="center aligned">
+            <tr class="text-center">
                 <th>ID</th>
                 <th>Username</th>
                 <th>Upgrade Date</th>
                 <th>Upgrade Accept Date</th>
                 <th>Upgrade Status</th>
-                <!-- {% if session.get('auth')['category'] == 0 %} -->
+                {% if session.get('auth') %}
+                {% if session.get('auth')['category'] == 0 %}
                 <th>Action</th>
-                <!-- {% endif %} -->
+                {% endif %}
+                {% endif %}
             </tr>
         </thead>
         <tbody>
             {% for upgrade in upgrades %}
-            <tr class="center aligned">
+            <tr class="text-center">
                 <td>{{upgrade.UPGRADE_ID}}</td>
                 <td>{{upgrade.users.USER_NAME}}</td>
                 <td>{{upgrade.UPGRADE_REQUESTDATE}}</td>
                 <td>{{upgrade.UPGRADE_RESPONDEDTIME}}</td>
-                <td>{{upgrade.UPGRADE_STATUS}}</td>
-
-                <!-- {% if session.get('auth')['category'] == 0 %} -->
+                {% if upgrade.UPGRADE_STATUS == 1 %}
+                <td>Accepted</td>
+                {% endif %}
+                <td>Pending</td>
+                {% if session.get('auth') %}
+                {% if session.get('auth')['category'] == 0 %}
                 <td>
                     <a href="{{url('/upgrade/edit/'~upgrade.UPGRADE_ID)}}" class="btn btn-info">Accept</a>
                 </td>
-                <!-- {% endif %} -->
+                {% endif %}
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>

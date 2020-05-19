@@ -24,9 +24,9 @@
         {{ flashSession.output() }}
         <br>
     </div>
-    <table class="ui sortable selectable inverted brown celled table">
+    <table class="table table-hover">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>ID</th>
                 <th>Title</th>
                 <th>Year</th>
@@ -43,7 +43,7 @@
         </thead>
         <tbody>
             {% for book in books %}
-            <tr>
+            <tr class="text-center">
                 <td>{{book.BOOK_ID}}</td>
                 <td>{{book.BOOK_TITLE}}</td>
                 <td>{{book.BOOK_YEAR}}</td>

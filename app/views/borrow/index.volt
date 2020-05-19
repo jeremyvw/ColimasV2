@@ -8,9 +8,9 @@
     <div>
         {{ flashSession.output() }}
     </div>
-    <table class="table">
+    <table class="table table-hover">
         <thead>
-            <tr class="center aligned">
+            <tr class="text-center">
                 <th>ID</th>
                 <th>Book</th>
                 <th>Member</th>
@@ -27,7 +27,7 @@
         </thead>
         <tbody>
             {% for borrow in borrows %}
-            <tr class="center aligned">
+            <tr class="text-center">
                 <td>{{borrow.BORROW_ID}}</td>
                 <td>{{borrow.books.BOOK_TITLE}}</td>
                 <td>{{borrow.users.USER_NAME}}</td>
