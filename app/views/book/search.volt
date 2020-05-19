@@ -30,9 +30,9 @@
         {{ flashSession.output() }}
         <br>
     </div>
-    <table class="ui sortable selectable inverted brown celled table">
+    <table class="table table-hover">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>ID</th>
                 <th>Title</th>
                 <th>Year</th>
@@ -49,7 +49,7 @@
         </thead>
         <tbody>
             {% for result in results %}
-            <tr>
+            <tr class="text-center">
                 <td>{{result.BOOK_ID}}</td>
                 <td>{{result.BOOK_TITLE}}</td>
                 <td>{{result.BOOK_YEAR}}</td>
