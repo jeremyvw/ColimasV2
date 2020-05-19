@@ -99,6 +99,10 @@ class BorrowController extends ControllerBase
 
             $status = $this->request->getPost('status');
 
+            if($status == "Finished")
+            {
+                $borrow->BORROW_RETURNDATE = date('Y-m-d h:i:sa');
+            }
             $borrow->BORROW_STATUS = $status;
 
             $success = $borrow->save();
@@ -111,8 +115,6 @@ class BorrowController extends ControllerBase
         else{
             $this->response->redirect('/');
         }
-        
-
     }
 
     public function filterAction()

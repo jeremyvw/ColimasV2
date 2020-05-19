@@ -51,7 +51,9 @@
                 <option value="Finished">Finished</option>
             </select>
         </div>
-        <input type="submit" value="Save changes" class="btn btn-success">
+        <div class="form-group row">
+            <input type="submit" value="Save changes" class="btn btn-success">
+        </div>
     </form>
 </div>
 {% endblock %}

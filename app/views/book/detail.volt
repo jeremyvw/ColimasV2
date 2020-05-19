@@ -58,7 +58,7 @@
     <div class="row">
         <div class="col-md-4">
             <div class="profile-img">
-                <img src="{{book.BOOK_COVERIMAGE}}" width="" height="150" alt="225">
+                <img src="{{url(book.BOOK_COVERIMAGE)}}" width="225" height="150" alt="#" />
             </div>
         </div>
         <div class="col-md-5">
