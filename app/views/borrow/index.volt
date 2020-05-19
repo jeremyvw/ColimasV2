@@ -5,6 +5,20 @@
         <h2>Borrow Requests</h2>
     </div>
     <br>
+    <form method="POST" action="{{url('borrow/filter')}}">
+        <div>
+            <div>
+                <input type="text" name="searchKey">
+                <input class="btn btn-primary" type="submit">
+            </div>
+            <div></div>
+        </div>
+        <br>
+        <select name="searchBy" id="">
+            <option value="title">Title</option>
+            <option value="name">Member</option>
+        </select>
+    </form>
     <div>
         {{ flashSession.output() }}
     </div>
