@@ -61,14 +61,21 @@
             {% endif %}
         </div>
     </nav>
+    <style>
+        .cont {
+            margin-top: 10pt;
+        }
+    </style>
 </head>
 
 {% block title %}
 {% endblock %}
 
 <body>
-    {% block content %}
-    {% endblock %}
+    <div class="cont">
+        {% block content %}
+        {% endblock %}
+    </div>
 </body>
 
 </html>

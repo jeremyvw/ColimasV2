@@ -61,13 +61,19 @@
             <?php } ?>
         </div>
     </nav>
+    <style>
+        .cont {
+            margin-top: 10pt;
+        }
+    </style>
 </head>
 
 
 
 
 <body>
-    
+    <div class="cont">
+        
 <!-- <h1>Welcome to Our Library</h1> -->
 <style>
     h1 {
@@ -265,6 +271,7 @@
 </div>
 
 
+    </div>
 </body>
 
 </html>

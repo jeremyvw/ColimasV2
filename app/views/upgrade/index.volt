@@ -37,7 +37,7 @@
                 {% if session.get('auth') %}
                 {% if session.get('auth')['category'] == 0 %}
                 <td>
-                    <a href="{{url('/upgrade/edit/'~upgrade.UPGRADE_ID)}}" class="btn btn-info">Accept</a>
+                    <a href="{{url('/upgrade/update/'~upgrade.UPGRADE_ID)}}" class="btn btn-info">Accept</a>
                 </td>
                 {% endif %}
                 {% endif %}

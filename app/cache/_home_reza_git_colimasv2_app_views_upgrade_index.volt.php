@@ -61,13 +61,19 @@
             <?php } ?>
         </div>
     </nav>
+    <style>
+        .cont {
+            margin-top: 10pt;
+        }
+    </style>
 </head>
 
 
 
 
 <body>
-    
+    <div class="cont">
+        
 <div class="container">
     <div class="page-header" style="text-align: center;">
         <h2>Upgraded Requests</h2>
@@ -105,7 +111,7 @@
                 <?php if ($this->session->get('auth')) { ?>
                 <?php if ($this->session->get('auth')['category'] == 0) { ?>
                 <td>
-                    <a href="<?= $this->url->get('/upgrade/edit/' . $upgrade->UPGRADE_ID) ?>" class="btn btn-info">Accept</a>
+                    <a href="<?= $this->url->get('/upgrade/update/' . $upgrade->UPGRADE_ID) ?>" class="btn btn-info">Accept</a>
                 </td>
                 <?php } ?>
                 <?php } ?>
@@ -115,6 +121,7 @@
     </table>
 </div>
 
+    </div>
 </body>
 
 </html>

@@ -61,13 +61,19 @@
             <?php } ?>
         </div>
     </nav>
+    <style>
+        .cont {
+            margin-top: 10pt;
+        }
+    </style>
 </head>
 
 
 
 
 <body>
-    
+    <div class="cont">
+        
 <div class="container-fluid">
     <div class="page-header" style="text-align: center;">
         <h2>Borrow Requests</h2>
@@ -117,6 +123,7 @@
     </table>
 </div>
 
+    </div>
 </body>
 
 </html>

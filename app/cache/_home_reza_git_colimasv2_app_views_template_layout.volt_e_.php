@@ -1,4 +1,4 @@
-a:5:{i:0;s:3089:"<!DOCTYPE html>
+a:5:{i:0;s:3170:"<!DOCTYPE html>
 <html lang="en">
 <?= $this->assets->outputCss() ?>
 <!-- <?= $this->assets->outputJs() ?> -->
@@ -61,14 +61,21 @@ a:5:{i:0;s:3089:"<!DOCTYPE html>
             <?php } ?>
         </div>
     </nav>
+    <style>
+        .cont {
+            margin-top: 10pt;
+        }
+    </style>
 </head>
 
 ";s:5:"title";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:1:"
-";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:67;}}i:1;s:13:"
+";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:72;}}i:1;s:40:"
 
 <body>
-    ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:5:"
-    ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:71;}}i:2;s:17:"
+    <div class="cont">
+        ";s:7:"content";a:1:{i:0;a:4:{s:4:"type";i:357;s:5:"value";s:9:"
+        ";s:4:"file";s:55:"/home/reza/git/ColimasV2/app/views/template/layout.volt";s:4:"line";i:77;}}i:2;s:28:"
+    </div>
 </body>
 
 </html>";}
