@@ -102,4 +102,17 @@ class BorrowController extends ControllerBase
         $this->response->redirect('/borrow');
 
     }
+
+    public function filterAction()
+    {
+        
+        
+        $searchKey = $this->request->getPost('searchKey');
+        $searchBy = $this->request->getPost('searchBy');
+        if($searchBy == 'title'){
+            $searchKey = '%'.$searchKey.'%'
+            // $query = $this->modelManager->createQuery('SELECT * FROM Borrows
+            // WHERE ')
+        }
+    }
 }
