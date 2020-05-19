@@ -122,23 +122,29 @@
                 <td><?= $book->authors->AUTHOR_NAME ?></td>
                 <td><?= $book->categories->CATEGORY_NAME ?></td>
                 <?php if ($this->session->get('auth')) { ?>
-                <?php if ($this->session->get('auth')['category'] == 0) { ?>
-                <td>
-                    <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary">Edit</a>
-                    <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger">Delete</a>
-                </td>
-                <?php } elseif ($this->session->get('auth')) { ?>
-                <?php if ($book->BOOK_COUNT == 0) { ?>
-                <td>
-                    <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm disabled">Pinjam</a>
-                </td>
-                <?php } else { ?>
-                <td>
-                    <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
-                </td>
-                <?php } ?>
-                <?php } else { ?>
-                <?php } ?>
+                    <?php if ($this->session->get('auth')['category'] == 0) { ?>
+                    <td>
+                        <a href="<?= $this->url->get('/book/edit/' . $book->BOOK_ID) ?>" class="btn btn-primary">Edit</a>
+                        <a href="<?= $this->url->get('/book/destroy/' . $book->BOOK_ID) ?>" class="btn btn-danger">Delete</a>
+                    </td>
+                    <?php } elseif ($this->session->get('auth')) { ?>
+                        <?php if ($book->BOOK_COUNT == 0) { ?>
+                        <td>
+                            <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm disabled">Pinjam</a>
+                        </td>
+                        <td>
+                            <a href="<?= $this->url->get('book/detail/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Detail</a>
+                        </td>
+                        <?php } else { ?>
+                        <td>
+                            <a href="<?= $this->url->get('borrow/add/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Pinjam</a>
+                        </td>
+                        <td>
+                            <a href="<?= $this->url->get('book/detail/' . $book->BOOK_ID) ?>" class="btn btn-success btn-sm">Detail</a>
+                        </td>
+                        <?php } ?>
+                    <?php } else { ?>
+                    <?php } ?>
                 <?php } ?>
             </tr>
             <?php } ?>
