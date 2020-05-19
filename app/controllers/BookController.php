@@ -196,7 +196,7 @@ class BookController extends ControllerBase
         $this->response->redirect('/book/manage');
     }
 
-    public function detailAction()
+    public function detailAction($id)
     {
         $book = Books::findFirstByBOOK_ID($id);
         

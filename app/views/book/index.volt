@@ -63,16 +63,16 @@
                         {% if book.BOOK_COUNT == 0 %}
                         <td>
                             <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm disabled">Pinjam</a>
-                        </td>
-                        <td>
-                            <a href="{{url('book/detail/'~book.BOOK_ID)}}" class="btn btn-success btn-sm">Detail</a>
+                            <span>
+                                <a href="{{url('book/detail/'~book.BOOK_ID)}}" class="btn btn-success btn-sm">Detail</a>
+                            </span>
                         </td>
                         {% else %}
                         <td>
                             <a href="{{url('borrow/add/'~book.BOOK_ID) }}" class="btn btn-success btn-sm">Pinjam</a>
-                        </td>
-                        <td>
+                        <span>
                             <a href="{{url('book/detail/'~book.BOOK_ID)}}" class="btn btn-success btn-sm">Detail</a>
+                        </span>
                         </td>
                         {% endif %}
                     {% else %}
